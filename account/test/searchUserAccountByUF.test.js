@@ -2,9 +2,6 @@ import { searchUserAccountByUFUseCase } from '../src/use-case/searchUserAccountB
 import { createUserUseCase, accounts } from '../src/use-case/createUserAccount.js';
 import { createAdditionalDataUseCase } from "../src/use-case/createAdditionalData.js";
 
-
-
-
 createUserUseCase(`Cairo`,`nome1@dominio.com`, 123456);
 createUserUseCase(`Carol`,`nome2@dominio.com`, 123456);
 createUserUseCase(`Karina`,`nome3@dominio.com`, 123456);

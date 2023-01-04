@@ -1,4 +1,7 @@
-import { createUserUseCase, accounts } from "../src/use-case/createUserAccount.js";
+import {
+  createUserUseCase,
+  accounts,
+} from "../src/use-case/createUserAccount.js";
 
 createUserUseCase(`Nome`, `nome1@dominio.com`, 123456);
 

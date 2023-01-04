@@ -1,12 +1,12 @@
 import { createUserUseCase, accounts } from "../use-case/createUserAccount.js";
 
 function searchUserAccountByEmailUseCase(emailFind) {
-  const searchEmail = accounts.filter((account) => account.email === emailFind) 
+  const searchEmail = accounts.filter((account) => account.email === emailFind);
   if (searchEmail != "") {
     return searchEmail;
   }
   if (searchEmail == "") {
-    return ("Não encontrado!");
+    return "Não encontrado!";
   }
 }
 

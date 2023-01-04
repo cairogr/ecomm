@@ -1,5 +1,8 @@
 import { changeUserNameUseCase } from "../src/use-case/changeUserName.js";
-import { createUserUseCase, accounts } from "../src/use-case/createUserAccount.js";
+import {
+  createUserUseCase,
+  accounts,
+} from "../src/use-case/createUserAccount.js";
 
 createUserUseCase(`Nome`, `nome1@dominio.com`, 123456);
 createUserUseCase(`Nome`, `nome2@dominio.com`, 123456);

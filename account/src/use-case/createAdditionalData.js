@@ -38,4 +38,4 @@ function createAdditionalDataUseCase(
   return accounts;
 }
 
-export {createAdditionalDataUseCase};
+export { createAdditionalDataUseCase };
