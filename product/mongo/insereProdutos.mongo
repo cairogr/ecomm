@@ -1,0 +1,96 @@
+db.products.insertMany([
+  {
+    nome: "Notebook Samsung",
+    descrição:
+      "Samsung Book Core i5-1135G7, 8G, 256GB SSD, Iris Xe, 15.6 FHD, W11 Cinza",
+    slug: "notebook-samsung",
+    preço: 3523,
+    qtd_estoque: 1,
+    categoria: "INFORMÁTICA",
+  },
+  {
+    nome: "Sofá 3 lugares",
+    descrição:
+      "Sofá 3 Lugares Retrátil e Reclinável Cama Inbox Compact 1,80m Velusoft Cinza",
+    slug: "sofa-3-lugares",
+    preço: 2500,
+    qtd_estoque: 1,
+    categoria: "MÓVEIS",
+  },
+  {
+    nome: "Clean Architecture",
+    descrição:
+      "Arquitetura limpa: O guia do artesão para estrutura e design de software por Robert C. Martin (Uncle Bob)",
+    slug: " livro-clean-architecture",
+    preço: 102.9,
+    qtd_estoque: 2,
+    categoria: "LIVROS",
+  },
+  {
+    nome: "Mesa de jantar 6 lugares",
+    descrição: "Mesa de Jantar 6 Lugares Lótus Oppa Design - Caramel",
+    slug: "mesa-de-jantar-6-lugares",
+    preço: 3678.98,
+    qtd_estoque: 1,
+    categoria: "MÓVEIS",
+  },
+  {
+    nome: "iPhone 13 Pro",
+    descrição: "Apple iPhone 13 Pro (256 GB) - Verde-alpino",
+    slug: "iphone-13-pro",
+    preço: 9176,
+    qtd_estoque: 6,
+    categoria: "CELULARES",
+  },
+  {
+    nome: "Monitor Dell 27",
+    descrição: "Monitor Dell de 27 P2722H, Preto",
+    slug: "monitor-dell-27",
+    preço: 1889,
+    qtd_estoque: 3,
+    categoria: "INFORMÁTICA",
+  },
+  {
+    nome: "Implementing Domain-Driven Design",
+    descrição: "Implementando Domain-Driven Design por Vaughn Vernon",
+    slug: "livro-implementing-ddd",
+    preço: 144.07,
+    qtd_estoque: 3,
+    categoria: "LIVROS",
+  },
+  {
+    nome: "Jogo de pneus",
+    descrição: "Pneu Barum by Continental Aro 13 Bravuris 5hm 175/70r13 82t",
+    slug: "jogo-de-pneus-continental-13",
+    preço: 1276.79,
+    qtd_estoque: 1,
+    categoria: "AUTOMOTIVA",
+  },
+  {
+    nome: "Clean Code",
+    descrição:
+      "Código limpo: Habilidades práticas do Agile Software por Robert C. Martin (Uncle Bob)",
+    slug: "livro-clean",
+    preço: 95.17,
+    qtd_estoque: 1,
+    categoria: "LIVROS",
+  },
+  {
+    nome: "Galaxy S22 Ultra",
+    descrição:
+      "Smartphone Samsung Galaxy S22 Ultra 256GB 5G com caneta S PEN - Preto, Câmera Tripla 108MP + Selfie 40MP, RAM 12GB, Tela 6.8",
+    slug: "celular-galaxy-22-ultra",
+    preço: 8549.1,
+    qtd_estoque: 5,
+    categoria: "CELULARES",
+  },
+  {
+    nome: "Macbook Pro 16",
+    descrição:
+      "Notebook Apple MacBook Pro de 13 polegadas: Chip M2 da Apple com CPU de oito núcleos e GPU de dez núcleos, de 512 GB SSD - Prateado",
+    slug: "notebook-macbook-pro-16",
+    preço: 31752,
+    qtd_estoque: 1,
+    categoria: "INFORMÁTICA",
+  }
+]);
