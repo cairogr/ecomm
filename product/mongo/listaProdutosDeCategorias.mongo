@@ -1,8 +1,5 @@
-db.products.find(
-  {
-    categoria: {
-        $in: ["LIVROS", "CELULARES"]
-    
-    }
-  }
-);
+db.products.find({
+  categoria: {
+    $in: ["LIVROS", "CELULARES"],
+  },
+});
