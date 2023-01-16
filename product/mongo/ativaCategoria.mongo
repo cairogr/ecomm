@@ -1,0 +1,13 @@
+const findCategorie = "ESPORTE";
+const newValue = true;
+db.categories.updateOne(
+  {
+    nome: findCategorie,
+  },
+  {
+    $set: {
+      status: newValue,
+    },
+  }
+);
+

@@ -1,0 +1,13 @@
+db.products.find(
+  {
+    preço: {
+      $gt: 1000.00,
+      $lt: 2000.00
+    },
+  },
+  {
+    _id: 1,
+    nome: 1,
+    preço: 1,
+  }
+);

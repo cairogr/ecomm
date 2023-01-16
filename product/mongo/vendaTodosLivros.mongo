@@ -1,0 +1,7 @@
+db.products.updateMany({
+    categoria: "LIVROS"},
+    {
+        $set: { qtd_estoque: 0}
+
+    }
+)
