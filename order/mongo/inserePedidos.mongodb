@@ -1,0 +1,31 @@
+use('ecomm-account')
+let pedido = db.accounts.aggregate([
+    {
+        $match: {
+            nome: "Jeannie Bridges"
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            id_cliente: "$_id",
+            nome: "$nome",
+            endereco: "$endereco",
+            data: ISODate(),
+            produtos: "$carrinho.produto",
+        }
+    }
+]).toArray()
+
+
+use('ecomm-order')
+
+db.orders.insertOne({
+    idCliente: pedido[0].id_cliente,
+    nome: pedido[0].nome,
+    endereco: pedido[0].endereco,
+    data: pedido[0].data,
+    produtos: pedido[0].produtos
+
+})
+
