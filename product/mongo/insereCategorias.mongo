@@ -1,10 +1,10 @@
 db.categories.insertMany([
-   { nome: "INFORMÁTICA", status: true},
-   { nome: "BELEZA", status: false},
-   { nome: "CELULARES", status: true},
-   { nome: "MÓVEIS", status: true},
-   { nome: "LUXO", status: false},
-   { nome: "ESPORTE", status: false},
-   { nome: "AUTOMOTIVA", status: true},
-   { nome: "LIVROS", status: true}
+   { name: "INFORMÁTICA", status: true},
+   { name: "BELEZA", status: false},
+   { name: "CELULARES", status: true},
+   { name: "MÓVEIS", status: true},
+   { name: "LUXO", status: false},
+   { name: "ESPORTE", status: false},
+   { name: "AUTOMOTIVA", status: true},
+   { name: "LIVROS", status: true}
 ])

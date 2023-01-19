@@ -1,1 +1,1 @@
-db.products.createIndex({ categoria : 1})
+db.products.createIndex({ category : 1})

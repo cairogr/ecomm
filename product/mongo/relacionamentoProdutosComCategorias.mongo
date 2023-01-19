@@ -1,10 +1,10 @@
 db.products.find().forEach((produto) => {
   info = db.categories
-    .find({ nome: produto.CATEGORIA }, { _id: 1, nome: 1, status: 1 })
+    .find({ name: produto.category }, { _id: 1, name: 1, status: 1 })
     .toArray();
 
   db.products.updateMany(
-    { CATEGORIA: info[0].nome },
-    { $set: { CATEGORIA: info[0] } }
+    { cateogory: info[0].name },
+    { $set: { category: info[0] } }
   );
 });

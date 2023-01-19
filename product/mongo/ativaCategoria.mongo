@@ -2,7 +2,7 @@ const findCategorie = "ESPORTE";
 const newValue = true;
 db.categories.updateOne(
   {
-    nome: findCategorie,
+    name: findCategorie,
   },
   {
     $set: {
