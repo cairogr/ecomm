@@ -1,3 +1,7 @@
+use('ecomm-product')
+
+db.products.drop()
+
 db.products.insertMany([
   {
     name: "Notebook Samsung",
@@ -13,7 +17,7 @@ db.products.insertMany([
     description:
       "Sofá 3 Lugares Retrátil e Reclinável Cama Inbox Compact 1,80m Velusoft Cinza",
     slug: "sofa-3-lugares",
-    price: 2500,
+    unitPrice: 2500,
     qtdStock: 1,
     category: "MÓVEIS",
   },
@@ -22,7 +26,7 @@ db.products.insertMany([
     description:
       "Arquitetura limpa: O guia do artesão para estrutura e design de software por Robert C. Martin (Uncle Bob)",
     slug: " livro-clean-architecture",
-    price: 102.9,
+    unitPrice: 102.9,
     qtdStock: 2,
     categoria: "LIVROS",
   },
@@ -30,7 +34,7 @@ db.products.insertMany([
     name: "Mesa de jantar 6 lugares",
     description: "Mesa de Jantar 6 Lugares Lótus Oppa Design - Caramel",
     slug: "mesa-de-jantar-6-lugares",
-    price: 3678.98,
+    unitPrice: 3678.98,
     qtdStock: 1,
     categoria: "MÓVEIS",
   },
@@ -38,7 +42,7 @@ db.products.insertMany([
     name: "iPhone 13 Pro",
     description: "Apple iPhone 13 Pro (256 GB) - Verde-alpino",
     slug: "iphone-13-pro",
-    price: 9176,
+    unitPrice: 9176,
     qtdStock: 6,
     categoria: "CELULARES",
   },
@@ -46,7 +50,7 @@ db.products.insertMany([
     name: "Monitor Dell 27",
     description: "Monitor Dell de 27 P2722H, Preto",
     slug: "monitor-dell-27",
-    price: 1889,
+    unitPrice: 1889,
     qtdStock: 3,
     categoria: "INFORMÁTICA",
   },
@@ -54,7 +58,7 @@ db.products.insertMany([
     name: "Implementing Domain-Driven Design",
     description: "Implementando Domain-Driven Design por Vaughn Vernon",
     slug: "livro-implementing-ddd",
-    price: 144.07,
+    unitPrice: 144.07,
     qtdStock: 3,
     categoria: "LIVROS",
   },
@@ -62,7 +66,7 @@ db.products.insertMany([
     name: "Jogo de pneus",
     description: "Pneu Barum by Continental Aro 13 Bravuris 5hm 175/70r13 82t",
     slug: "jogo-de-pneus-continental-13",
-    price: 1276.79,
+    unitPrice: 1276.79,
     qtdStock: 1,
     categoria: "AUTOMOTIVA",
   },
@@ -71,7 +75,7 @@ db.products.insertMany([
     description:
       "Código limpo: Habilidades práticas do Agile Software por Robert C. Martin (Uncle Bob)",
     slug: "livro-clean",
-    price: 95.17,
+    unitPrice: 95.17,
     qtdStock: 1,
     categoria: "LIVROS",
   },
@@ -80,7 +84,7 @@ db.products.insertMany([
     description:
       "Smartphone Samsung Galaxy S22 Ultra 256GB 5G com caneta S PEN - Preto, Câmera Tripla 108MP + Selfie 40MP, RAM 12GB, Tela 6.8",
     slug: "celular-galaxy-22-ultra",
-    price: 8549.1,
+    unitPrice: 8549.1,
     qtdStock: 5,
     categoria: "CELULARES",
   },
@@ -89,7 +93,7 @@ db.products.insertMany([
     description:
       "Notebook Apple MacBook Pro de 13 polegadas: Chip M2 da Apple com CPU de oito núcleos e GPU de dez núcleos, de 512 GB SSD - Prateado",
     slug: "notebook-macbook-pro-16",
-    price: 31752,
+    unitPrice: 31752,
     qtdStock: 1,
     categoria: "INFORMÁTICA",
   }
