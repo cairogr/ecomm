@@ -5,48 +5,47 @@ db.accounts.updateMany({},{$set: {cart: []}})
 
 use('ecomm-product')
 
-let addCarrinho = db.products.aggregate([
+let addCart = db.products.aggregate([
     {
         $match: {
-            nome: "Clean Code"
+            name: "iPhone 13 Pro"
         }
     },
     {
         $project: {
             _id: 0,
-            id_produto: "$_id",
-            nome: "$nome",
-            preco: "$preço",
+            id_product: "$_id",
+            name: "$name",
+            price: "$unitPrice",
         }
     }
 ]).toArray()
 
-addCarrinho[0].qtdAdd = 6
+addCart[0].qtdAdd = 3
 
 use('ecomm-account')
 
-db.accounts.findOneAndUpdate({
-        nome: "Lawrence Fry"},
-        { $push: { "carrinho" : addCarrinho}
-
-})
+db.accounts.findOneAndUpdate(
+    { name: "Lawrence Fry"},
+    { $push: {cart: { $each : addCart } } }
+)
 
 
 use('ecomm-account')
-let addPedido = db.accounts.aggregate([
+let addOrder = db.accounts.aggregate([
     {
         $match: {
-            nome: "Lawrence Fry"
+            name: "Lawrence Fry"
         }
     },
     {
         $project: {
             _id: 0,
-            id_cliente: "$_id",
-            nome: "$nome",
-            endereco: "$endereco",
-            data: ISODate(),
-            items: "$carrinho",
+            id_client: "$_id",
+            name: "$name",
+            address: "$address",
+            registered: ISODate(),
+            items: "$cart",
         }
     }
 ]).toArray()
@@ -54,4 +53,8 @@ let addPedido = db.accounts.aggregate([
 
 use('ecomm-order')
 
-db.orders.insertOne(addPedido[0])
+db.orders.insertOne(addOrder[0])
+
+use('ecomm-account')
+
+db.accounts.updateMany({},{$set: {cart: []}})
