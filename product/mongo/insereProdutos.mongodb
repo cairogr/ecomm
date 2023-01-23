@@ -5,30 +5,27 @@ db.products.drop()
 db.products.insertMany([
   {
     name: "Notebook Samsung",
-    description:
-      "Samsung Book Core i5-1135G7, 8G, 256GB SSD, Iris Xe, 15.6 FHD, W11 Cinza",
+    description: "Samsung Book Core i5-1135G7, 8G, 256GB SSD, Iris Xe, 15.6 FHD, W11 Cinza",
     slug: "notebook-samsung",
     unitPrice: 3523,
     qtdStock: 1,
-    category: "INFORMÁTICA",
+    category: "INFORMÁTICA"
   },
   {
     name: "Sofá 3 lugares",
-    description:
-      "Sofá 3 Lugares Retrátil e Reclinável Cama Inbox Compact 1,80m Velusoft Cinza",
+    description: "Sofá 3 Lugares Retrátil e Reclinável Cama Inbox Compact 1,80m Velusoft Cinza",
     slug: "sofa-3-lugares",
     unitPrice: 2500,
     qtdStock: 1,
-    category: "MÓVEIS",
+    category: "MÓVEIS"
   },
   {
     name: "Clean Architecture",
-    description:
-      "Arquitetura limpa: O guia do artesão para estrutura e design de software por Robert C. Martin (Uncle Bob)",
-    slug: " livro-clean-architecture",
+    description: "Arquitetura limpa: O guia do artesão para estrutura e design de software por Robert C. Martin (Uncle Bob)",
+    slug: "livro-clean-architecture",
     unitPrice: 102.9,
     qtdStock: 2,
-    categoria: "LIVROS",
+    category: "LIVROS"
   },
   {
     name: "Mesa de jantar 6 lugares",
@@ -36,7 +33,7 @@ db.products.insertMany([
     slug: "mesa-de-jantar-6-lugares",
     unitPrice: 3678.98,
     qtdStock: 1,
-    categoria: "MÓVEIS",
+    category: "MÓVEIS"
   },
   {
     name: "iPhone 13 Pro",
@@ -44,7 +41,7 @@ db.products.insertMany([
     slug: "iphone-13-pro",
     unitPrice: 9176,
     qtdStock: 6,
-    categoria: "CELULARES",
+    category: "CELULARES"
   },
   {
     name: "Monitor Dell 27",
@@ -52,7 +49,7 @@ db.products.insertMany([
     slug: "monitor-dell-27",
     unitPrice: 1889,
     qtdStock: 3,
-    categoria: "INFORMÁTICA",
+    category: "INFORMÁTICA"
   },
   {
     name: "Implementing Domain-Driven Design",
@@ -60,7 +57,7 @@ db.products.insertMany([
     slug: "livro-implementing-ddd",
     unitPrice: 144.07,
     qtdStock: 3,
-    categoria: "LIVROS",
+    category: "LIVROS"
   },
   {
     name: "Jogo de pneus",
@@ -68,33 +65,70 @@ db.products.insertMany([
     slug: "jogo-de-pneus-continental-13",
     unitPrice: 1276.79,
     qtdStock: 1,
-    categoria: "AUTOMOTIVA",
+    category: "AUTOMOTIVA"
   },
   {
     name: "Clean Code",
-    description:
-      "Código limpo: Habilidades práticas do Agile Software por Robert C. Martin (Uncle Bob)",
+    description: "Código limpo: Habilidades práticas do Agile Software por Robert C. Martin (Uncle Bob)",
     slug: "livro-clean",
     unitPrice: 95.17,
     qtdStock: 1,
-    categoria: "LIVROS",
+    category: "LIVROS"
   },
   {
     name: "Galaxy S22 Ultra",
-    description:
-      "Smartphone Samsung Galaxy S22 Ultra 256GB 5G com caneta S PEN - Preto, Câmera Tripla 108MP + Selfie 40MP, RAM 12GB, Tela 6.8",
+    description: "Smartphone Samsung Galaxy S22 Ultra 256GB 5G com caneta S PEN - Preto, Câmera Tripla 108MP + Selfie 40MP, RAM 12GB, Tela 6.8",
     slug: "celular-galaxy-22-ultra",
     unitPrice: 8549.1,
     qtdStock: 5,
-    categoria: "CELULARES",
+    category: "CELULARES"
   },
   {
     name: "Macbook Pro 16",
-    description:
-      "Notebook Apple MacBook Pro de 13 polegadas: Chip M2 da Apple com CPU de oito núcleos e GPU de dez núcleos, de 512 GB SSD - Prateado",
+    description: "Notebook Apple MacBook Pro de 13 polegadas: Chip M2 da Apple com CPU de oito núcleos e GPU de dez núcleos, de 512 GB SSD - Prateado",
     slug: "notebook-macbook-pro-16",
     unitPrice: 31752,
     qtdStock: 1,
-    categoria: "INFORMÁTICA",
+    category: "INFORMÁTICA"
+  },
+  {
+    name: "Refactoring Improving the Design of Existing Code",
+    description: "Refatoração: Aperfeiçoando o Design de Códigos Existentes por Martin Fowler",
+    slug: "livro-refactoring",
+    unitPrice: 173.9,
+    qtdStock: 1,
+    category: "LIVROS"
+  },
+  {
+    name: "Cama queen size",
+    description: "Cama Queen Size Dener Oppa Design - Mel",
+    slug: "cama-queen-size-dener",
+    unitPrice: 3100,
+    qtdStock: 2,
+    category: "MÓVEIS"
+  },
+  {
+    name: "Central multimidia",
+    description: "Kit Combo Central Multimídia 9 Polegadas Mp5 Automotivo Aparelho 2 Din Som Pra Carro Sistema Operacional Android 12 Bluetooth Usb Gps Integrado Conexão Wifi Função Speedplay que Simula Carplay e Android Auto Mais Aplicativos Como Spotify Waze Youtube WhatsApp, Tela Resistiva, Microfone Externo Função Multi Tela 2gb Ram e 32gb de Memória interna, Entradas para Encostos de Cabeça, Comando de Volante e Para Câmera Frontal ou Traseira + Moldura Painel Kia Sorento 2013 a 2014 Cor Preta + Câmera de ré",
+    slug: "central-multimidia-automotiva",
+    unitPrice: 711.18,
+    qtdStock: 1,
+    category: "AUTOMOTIVA"
+  },
+  {
+    name: "Building Microservices",
+    description: "Building Microservices (English Edition) por Sam Newman",
+    slug: "livro-building-microservices",
+    unitPrice: 300.28,
+    qtdStock: 2,
+    category: "LIVROS"
+  },
+  {
+    name: "Galaxy Tab S8",
+    description: "Tablet Samsung Galaxy S8 5G SM-X706B 256gb Grafite 8gb Ram",
+    slug: "tablet-galaxy-tab-s8",
+    unitPrice: 5939.1,
+    qtdStock: 4,
+    category: "INFORMÁTICA"
   }
 ]);
