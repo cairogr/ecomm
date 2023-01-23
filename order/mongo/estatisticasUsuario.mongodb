@@ -1,0 +1,24 @@
+use("ecomm-account");
+
+findClient = db.accounts.find({name: "Lawrence Fry"})
+
+use("ecomm-order");
+
+db.orders.aggregate([
+  {
+    $match: {
+      _id_client:findClient._id
+    }
+  },
+  {
+  $unwind: "$items"
+  },
+  {
+    $group: {
+      _id: 'items',
+      totalSaleAmount: { $sum: { $multiply: [ "$items.price", "$items.amount" ] }},
+      totalDiscountAmount: { $sum: "$items.discount" },
+      totalItems: { $sum: "$items.amount" }
+    }
+  }
+])

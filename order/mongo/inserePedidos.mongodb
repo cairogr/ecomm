@@ -1,0 +1,71 @@
+
+use('ecomm-account')
+
+db.accounts.updateMany({},{$set: {cart: []}})
+
+use('ecomm-product')
+
+let buyProduct = "iPhone 13 Pro";
+let customerBuying = "Lawrence Fry";
+let quantityPurchased = 3;
+let purchaseDiscount = 10;
+
+
+let addCart = db.products.aggregate([
+    {
+        $match: {
+            name: buyProduct
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            id_product: "$_id",
+            name: "$name",
+            price: "$unitPrice",
+        }
+    }
+]).toArray()
+
+addCart[0].amount = quantityPurchased;
+addCart[0].discount = (purchaseDiscount/100)*quantityPurchased*addCart[0].price;
+
+
+
+use('ecomm-account')
+
+
+db.accounts.findOneAndUpdate(
+    { name: customerBuying},
+    { $push: {cart: { $each : addCart } } }
+)
+
+
+use('ecomm-account')
+let addOrder = db.accounts.aggregate([
+    {
+        $match: {
+            name: "Lawrence Fry"
+        }
+    }, 
+    {
+        $project: {
+            _id: 0,
+            id_client: "$_id",
+            name: "$name",
+            address: "$address",
+            registered: ISODate(),
+            items: "$cart",
+            discount: "$discount",
+        }
+    }
+]).toArray()
+
+
+use('ecomm-order')
+
+db.orders.insertOne(addOrder[0])
+
+use('ecomm-account')
+
+db.accounts.updateMany({},{$set: {cart: []}})

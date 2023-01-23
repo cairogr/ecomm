@@ -1,0 +1,126 @@
+use('ecomm-account')
+
+db.accounts.drop()
+
+db.accounts.insertMany([
+  {
+    name: "Lawrence Fry",
+    email: "lawrencefry@silodyne.com",
+    password: "6cf0cfb7-3099-428d-865a-ed8ad1135ea9",
+    registered: "Tue Jan 17 2023 11:42:53 GMT-0300 (Brasilia Standard Time)",
+    status: false,
+    cpf: "180.270.999-62",
+    phone: "+55 (96) 93282-4623",
+    address: [
+      {
+        street: "Flatlands Avenue",
+        number: 415,
+        complement: "",
+        zipCode: "66.117-1",
+        city: "Barclay",
+        state: "Virgin Islands",
+        status: true
+      }
+    ]
+  },
+  {
+    name: "Jeannie Bridges",
+    email: "jeanniebridges@silodyne.com",
+    password: "6a473206-8ac4-40e6-9047-1044d04b6705",
+    registered: "Tue Jan 17 2023 11:42:53 GMT-0300 (Brasilia Standard Time)",
+    status: false,
+    cpf: "952.501.249-16",
+    phone: "+55 (23) 98159-5357",
+    address: [
+      {
+        street: "Butler Place",
+        number: 134,
+        complement: "",
+        zipCode: "10.770-574",
+        city: "Caroleen",
+        state: "Maryland",
+        status: false
+      }
+    ]
+  },
+  {
+    name: "Cannon Farrell",
+    email: "cannonfarrell@silodyne.com",
+    password: "53936b79-e3aa-4281-9030-62a1e75c1e2d",
+    registered: "Tue Jan 17 2023 11:42:53 GMT-0300 (Brasilia Standard Time)",
+    status: true,
+    cpf: "528.622.544-56",
+    phone: "+55 (5) 93618-9543",
+    address: [
+      {
+        street: "National Drive",
+        number: 990,
+        complement: "",
+        zipCode: "26.591-603",
+        city: "Blodgett",
+        state: "Michigan",
+        status: false
+      }
+    ]
+  },
+  {
+    name: "Robin Bell",
+    email: "robinbell@silodyne.com",
+    password: "958856e9-fa51-4d94-ab0d-bcfcc3ecc859",
+    registered: "Tue Jan 17 2023 11:42:53 GMT-0300 (Brasilia Standard Time)",
+    status: false,
+    cpf: "234.872.100-48",
+    phone: "+55 (51) 92058-3378",
+    address: [
+      {
+        street: "Village Road",
+        number: 87,
+        complement: "",
+        zipCode: "99.605-472",
+        city: "Grahamtown",
+        state: "Northern Mariana Islands",
+        status: true
+      }
+    ]
+  },
+  {
+    name: "Medina Burgess",
+    email: "medinaburgess@silodyne.com",
+    password: "d8e69198-4b83-49c5-9fad-391c0f5f00b1",
+    registered: "Tue Jan 17 2023 11:42:53 GMT-0300 (Brasilia Standard Time)",
+    status: true,
+    cpf: "520.331.277-99",
+    phone: "+55 (45) 91053-4761",
+    address: [
+      {
+        street: "Dekalb Avenue",
+        number: 882,
+        complement: "",
+        zipCode: "96.121-597",
+        city: "Edmund",
+        state: "Oklahoma",
+        status: true
+      }
+    ]
+  },
+  {
+    name: "Alissa Pittman",
+    email: "alissapittman@silodyne.com",
+    password: "d190f796-29f7-410d-beea-d1a911cff102",
+    registered: "Tue Jan 17 2023 11:42:53 GMT-0300 (Brasilia Standard Time)",
+    status: false,
+    cpf: "688.570.539-78",
+    phone: "+55 (2) 98617-6951",
+    address: [
+      {
+        street: "Vine Street",
+        number: 441,
+        complement: "",
+        zipCode: "78.910-750",
+        city: "Bend",
+        state: "Guam",
+        status: false
+      }
+    ]
+  }
+])

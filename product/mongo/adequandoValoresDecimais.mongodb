@@ -1,0 +1,5 @@
+use('ecomm-product')
+
+db.products.find().forEach((produto) => {
+  db.products.updateOne({_id:produto._id},{$set:{unitPrice: NumberDecimal(produto.unitPrice)}})
+})

@@ -1,12 +1,12 @@
 db.products.find(
   {
-    qtd_estoque: {
+    qtdStock: {
       $gt: 3,
     },
   },
   {
     _id: 1,
-    nome: 1,
-    qtd_estoque: 1,
+    name: 1,
+    qtdStock: 1,
   }
 );

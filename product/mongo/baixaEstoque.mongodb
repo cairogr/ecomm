@@ -1,0 +1,12 @@
+use('ecomm-product')
+
+let downStock = db.products.findOneAndUpdate({
+    name: "Galaxy Tab S8",
+    qtdStock:{
+        $gte: 1
+    }
+},{
+    $inc: {
+        qtdStock: -1
+    }
+})
