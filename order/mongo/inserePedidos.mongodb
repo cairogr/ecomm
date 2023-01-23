@@ -5,10 +5,14 @@ db.accounts.updateMany({},{$set: {cart: []}})
 
 use('ecomm-product')
 
+let buyProduct = "Notebook Samsung";
+let customerBuying = "Lawrence Fry";
+
+
 let addCart = db.products.aggregate([
     {
         $match: {
-            name: "iPhone 13 Pro"
+            name: buyProduct
         }
     },
     {
@@ -26,7 +30,7 @@ addCart[0].qtdAdd = 3
 use('ecomm-account')
 
 db.accounts.findOneAndUpdate(
-    { name: "Lawrence Fry"},
+    { name: customerBuying},
     { $push: {cart: { $each : addCart } } }
 )
 
