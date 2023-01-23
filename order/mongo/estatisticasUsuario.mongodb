@@ -16,7 +16,9 @@ db.orders.aggregate([
   {
     $group: {
       _id: 'items',
-      totalSaleAmount: { $sum: { $multiply: [ "$items.price", "$items.qtdAdd" ] }}
+      totalSaleAmount: { $sum: { $multiply: [ "$items.price", "$items.amount" ] }},
+      totalDiscountAmount: { $sum: "$items.discount" },
+      totalItems: { $sum: "$items.amount" }
     }
   }
 ])
