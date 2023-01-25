@@ -1,0 +1,37 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: |-
+    Projeto chamado **Ecomm**, que é um ecommerce baseado no Mercado Livre ou semelhantes que será um projeto construído em partes, ou seja, teremos alguns projetos que se conectam e em conjunto, fazem o Ecomm funcionar.
+    
+    Some useful links:
+    - [The Ecomm repository](https://github.com/cairogr/ecomm)
+   
+  termsOfService: https://github.com/cairogr/ecomm
+  contact:
+    email: cairo.ribeiro@pagonxt.com
+
+  version: 0.0.1
+
+servers:
+  - url: https://63d01b8a8a780ae6e683cb6b.mockapi.io/
+paths:
+  /api/categories:
+    get:
+      summary: Recupera categorias cadastradas
+      responses:
+        200:
+          description: Sucesso!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    status:
+                      type: boolean
