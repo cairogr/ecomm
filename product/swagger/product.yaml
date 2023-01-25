@@ -35,3 +35,27 @@ paths:
                       type: string
                     status:
                       type: boolean
+    post:
+      summary: Cadastro de categorias pelo Administrador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        201:
+          description: Sucesso!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  status:
+                    type: boolean
