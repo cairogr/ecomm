@@ -240,7 +240,42 @@ paths:
           content:
             application/json:
               example: "ID not found"
+  /products:
+    get:
+      tags:
+        - products
+      summary: List products from a specific category
+      parameters:
+        - name: category
+          in: query
+          description: Categories that need to be considered for the filter
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: available
+            enum:
+              - informática
+              - beleza
+              - celulares
+              - movéis
+              - luxo
+              - esporte
+              - automotiva
+              - livros
+      responses:
+        '200':
+          description: Sucesso!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
 
+
+
+
+
+                
 components:
   schemas:
     Categories:
@@ -279,10 +314,14 @@ components:
           type: integer
           format: int32
           example: 10
-        idCateogry:
+        idCategory:
           type: integer
           format: int64
           example: 1
+        cateogry:
+          type: string
+          example: celulares
+
     Users:
       type: object
       properties:
