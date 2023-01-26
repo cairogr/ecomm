@@ -283,4 +283,32 @@ components:
           type: integer
           format: int64
           example: 1
+    Users:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: iPhone 13 Pro
+        description:
+          type: string
+          example: Apple iPhone 13 Pro (256 GB) - Verde-alpino
+        slug:
+          type: string
+          example: iphone-13-pro
+        unitPrice:
+          type: integer
+          format: int32
+          example: 9335.62
+        quantityStock:
+          type: integer
+          format: int32
+          example: 10
+        idCateogry:
+          type: integer
+          format: int64
+          example: 1
 
