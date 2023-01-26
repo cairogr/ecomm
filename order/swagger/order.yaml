@@ -1,0 +1,142 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: |-
+    Projeto chamado **Ecomm**, que é um ecommerce baseado no Mercado Livre ou semelhantes que será um projeto construído em partes, ou seja, teremos alguns projetos que se conectam e em conjunto, fazem o Ecomm funcionar.
+    
+    Some useful links:
+    - [The Ecomm repository](https://github.com/cairogr/ecomm)
+   
+  termsOfService: https://github.com/cairogr/ecomm
+  contact:
+    email: cairo.ribeiro@pagonxt.com
+
+  version: 0.0.1
+
+servers:
+  - url: https://63d01b8a8a780ae6e683cb6b.mockapi.io/
+tags:
+  - name: order
+    description: Operations about order
+
+paths:
+  /api/Order:
+    get: 
+      tags:
+      - order
+      summary: Returns all orders registration in the ecommerce
+      responses:
+        '200':
+          description: Successful!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    post: 
+      tags:
+      - order
+      summary: Create order
+      requestBody:
+        description: Create a new order in the ecommerce
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      responses:
+        '201':
+          description: Successfully created!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'      
+        '400':
+          description: Invalid input  
+  /api/Order/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+    get:
+      tags:
+        - order
+      summary: Find order by ID
+      description: Return a single order
+      responses:
+        '200':
+          description: Successful!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Invalid ID supplied
+          content:
+            application/json:
+              example: "Invalid ID"
+        '404':
+          description: order not found
+          content:
+            application/json:
+              example: "ID not found"
+  
+components:
+  schemas:
+    Order:
+      type: object
+      properties:
+        idClient:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: Arnold Schwarzenegger 
+        streetDeliveryAddress:
+          type: string
+          example: Butler Place
+        numberDeliveryAddress:
+          type: integer
+          format: int32
+          example: 987
+        complementDeliveryAddress:
+          type: string
+          example: close to grandma
+        zipCodeDeliveryAddress:
+          type: string
+          example: 98.765-43
+        cityDeliveryAddress:
+          type: string
+          example: Blodgett
+        stateDeliveryAddress:
+          type: string
+          example: Michigan
+        registered:
+          type: string
+          format: date-time
+          writeOnly: true
+        orderItems:
+          type: array
+          items:
+            type: object
+            properties:
+              idProduct:
+                type: integer
+                format: int64
+                example: 1
+              amount:
+                type: integer
+                format: int32
+                example: 1
+              discount:
+                type: integer
+                format: int64
+                example: 111.66  
+              unitPrice:
+                type: integer
+                format: int64
+                example: 1116.60
+
