@@ -240,29 +240,47 @@ paths:
           content:
             application/json:
               example: "ID not found"
-  /products:
+  /products/:
     get:
       tags:
         - products
       summary: List products from a specific category
       parameters:
-        - name: category
-          in: query
-          description: Categories that need to be considered for the filter
-          required: false
-          explode: true
-          schema:
-            type: string
-            default: available
-            enum:
-              - informática
-              - beleza
-              - celulares
-              - movéis
-              - luxo
-              - esporte
-              - automotiva
-              - livros
+      - name: category
+        in: query
+        description: Categories that need to be considered for the filter
+        required: false
+        explode: false
+        schema:
+          type: string
+          default: available
+          enum:
+            - informática
+            - beleza
+            - celulares
+            - movéis
+            - luxo
+            - esporte
+            - automotiva
+            - livros
+      - name: minPrice
+        in: query
+        description: Min
+        required: false
+        schema: 
+            type: integer
+      - name: maxPrice
+        in: query
+        description: Max
+        required: false
+        schema: 
+            type: integer
+      - name: quantityStock
+        in: query
+        description: List greater quantity Stock
+        required: false
+        schema:
+          type: integer
       responses:
         '200':
           description: Sucesso!
@@ -275,7 +293,6 @@ paths:
 
 
 
-                
 components:
   schemas:
     Categories:
@@ -318,7 +335,7 @@ components:
           type: integer
           format: int64
           example: 1
-        cateogry:
+        category:
           type: string
           example: celulares
 
@@ -350,4 +367,16 @@ components:
           type: integer
           format: int64
           example: 1
-
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
