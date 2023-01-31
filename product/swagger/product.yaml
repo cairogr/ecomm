@@ -91,6 +91,13 @@ paths:
       schema:
         type: integer
       required: true
+    patch:
+      tags: 
+      - categories
+      summary: Ativa uma categoria.
+      responses:
+        200:
+          description: Categoria ativada com sucesso!  
     put:
       tags: 
       - categories
@@ -246,23 +253,23 @@ paths:
         - products
       summary: List products from a specific category
       parameters:
-      - name: category
-        in: query
-        description: Categories that need to be considered for the filter
-        required: false
-        explode: false
-        schema:
-          type: string
-          default: available
-          enum:
-            - informática
-            - beleza
-            - celulares
-            - movéis
-            - luxo
-            - esporte
-            - automotiva
-            - livros
+      # - name: category
+      #   in: query
+      #   description: Categories that need to be considered for the filter
+      #   required: false
+      #   explode: false
+      #   schema:
+      #     type: string
+      #     default: available
+      #     enum:
+      #       - informática
+      #       - beleza
+      #       - celulares
+      #       - movéis
+      #       - luxo
+      #       - esporte
+      #       - automotiva
+      #       - livros
       - name: minPrice
         in: query
         description: Min
@@ -275,12 +282,12 @@ paths:
         required: false
         schema: 
             type: integer
-      - name: quantityStock
-        in: query
-        description: List greater quantity Stock
-        required: false
-        schema:
-          type: integer
+      # - name: quantityStock
+      #   in: query
+      #   description: List greater quantity Stock
+      #   required: false
+      #   schema:
+      #     type: integer
       responses:
         '200':
           description: Sucesso!
