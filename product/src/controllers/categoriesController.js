@@ -32,6 +32,19 @@ class CategoriesController {
     })
   }
 
+
+  static alteraCategoria = (req, res) => {
+    const id = req.params.id;
+
+    categories.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+      if(!err) {
+        res.status(200).send({message: 'Categoria atualizada com sucesso'})
+      } else {
+        res.status(500).send({message: err.message})
+      }
+    })
+  }
+
 }
 
 export default CategoriesController
