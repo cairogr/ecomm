@@ -19,6 +19,19 @@ class CategoriesController {
       }
     })
   }
+
+  static detalhamentoCategoriaPorId = (req, res) => {
+    const id = req.params.id;
+
+    categories.findById(id, (err, categories) => {
+      if(err) {
+        res.status(400).send({message: `${err.message} - Id da Categoria não localizado.`})
+      } else {
+        res.status(200).send(categories);
+      }
+    })
+  }
+
 }
 
 export default CategoriesController
