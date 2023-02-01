@@ -8,6 +8,7 @@ router
   .get("/categories/:id", CategoriesController.detalhamentoCategoriaPorId)
   .post("/categories", CategoriesController.insercaoCategorias)
   .put("/categories/:id", CategoriesController.alteraCategoria)
+  .patch("/categories/:id", CategoriesController.ativaCategoria)
   .delete("/categories/:id", CategoriesController.removeCategoria)
 
 
