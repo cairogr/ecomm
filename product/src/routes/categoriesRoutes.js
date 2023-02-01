@@ -8,6 +8,7 @@ router
   .get("/categories/:id", CategoriesController.detalhamentoCategoriaPorId)
   .post("/categories", CategoriesController.insercaoCategorias)
   .put("/categories/:id", CategoriesController.alteraCategoria)
+  .delete("/categories/:id", CategoriesController.removeCategoria)
 
 
 export default router;   
