@@ -1,0 +1,386 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API Ecomm",
+    "description": "Projeto chamado **Ecomm**, que é um ecommerce baseado no Mercado Livre ou semelhantes que será um projeto construído em partes, ou seja, teremos alguns projetos que se conectam e em conjunto, fazem o Ecomm funcionar.  Some useful links:    - [The Ecomm repository](https://github.com/cairogr/ecomm)"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Categories",
+      "description": "Endpoints"
+    },
+    {
+      "name": "Products",
+      "description": "Endpoints"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    },
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+      "flow": "implicit",
+      "scopes": {
+        "read_pets": "read your pets",
+        "write_pets": "modify pets in your account"
+      }
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "description": "Endpoint para listar categorias.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Sucesso!",
+            "schema": {
+              "$ref": "#/definitions/Categories"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "description": "Endpoint para inserir categorias.",
+        "parameters": [
+          {
+            "name": "info",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Phone"
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": true
+                }
+              },
+              "required": [
+                "name",
+                "status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Criado com Sucesso!",
+            "schema": {
+              "$ref": "#/definitions/Categories"
+            }
+          },
+          "500": {
+            "description": "Falha ao cadastrar Categoria!"
+          }
+        }
+      }
+    },
+    "/categories/{id}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "description": "Endpoint para detalhar uma categoria.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID da categoria."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso!",
+            "schema": {
+              "$ref": "#/definitions/Categories"
+            }
+          },
+          "404": {
+            "description": "Categoria não localizada!",
+            "schema": {
+              "$ref": "#/definitions/Categories"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Categories"
+        ],
+        "description": "Endpoint para alterar uma categoria.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filtro",
+            "in": "path",
+            "description": "Digite o ID da Categoria para alterar",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Categoria atualizada com sucesso!",
+            "schema": {
+              "$ref": "#/definitions/Categories"
+            }
+          },
+          "404": {
+            "description": "Categoria não encontrada!",
+            "schema": {
+              "$ref": "#/definitions/Categories"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Categories"
+        ],
+        "description": "Endpoint para alterar o status da categoria para ativa.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filtro",
+            "in": "path",
+            "description": "Digite o ID da Categoria para ativar",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Categoria Ativa com Sucesso!",
+            "schema": {
+              "$ref": "#/definitions/Categories"
+            }
+          },
+          "404": {
+            "description": "Categoria não encontrada!",
+            "schema": {
+              "$ref": "#/definitions/Categories"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "description": "Endpoint para remover uma categoria.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filtro",
+            "in": "path",
+            "description": "Digite o ID da Categoria para remover",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Categoria Removida com Sucesso!",
+            "schema": {
+              "$ref": "#/definitions/Categories"
+            }
+          },
+          "404": {
+            "description": "Categoria não encontrada!",
+            "schema": {
+              "$ref": "#/definitions/Categories"
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Categories": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "Phone"
+        },
+        "status": {
+          "type": "boolean",
+          "example": true
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "status"
+      ]
+    },
+    "Products": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Notebook Samsung"
+        },
+        "description": {
+          "type": "string",
+          "example": "Samsung Book Core i5-1135G7, 8G, 256GB SSD, Iris Xe, 15.6 FHD, W11 Cinza"
+        },
+        "slug": {
+          "type": "string",
+          "example": "notebook-samsung"
+        },
+        "unitPrice": {
+          "type": "number",
+          "example": 3523
+        },
+        "quantityStock": {
+          "type": "number",
+          "example": 1
+        },
+        "idCategory": {
+          "type": "string",
+          "example": "INFORMÁTICA"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "slug",
+        "unitPrice",
+        "quantityStock",
+        "idCategory"
+      ]
+    }
+  }
+}
