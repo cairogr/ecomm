@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 mongoose.set('strictQuery',false);
-mongoose.connect("mongodb://127.0.0.1:27017/ecomm");
+mongoose.connect("mongodb://admin:secret@mongo-ecomm:27017/ecomm?authSource=admin");
 
 let db = mongoose.connection;
 
