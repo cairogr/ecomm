@@ -49,7 +49,7 @@
         "tags": [
           "Categories"
         ],
-        "description": "Endpoint para listar categorias.",
+        "description": "Exibe todas as categorias cadastradas.",
         "parameters": [],
         "responses": {
           "200": {
@@ -64,7 +64,7 @@
         "tags": [
           "Categories"
         ],
-        "description": "Endpoint para inserir categorias.",
+        "description": "Cadastra Categorias",
         "parameters": [
           {
             "name": "info",
@@ -107,7 +107,7 @@
         "tags": [
           "Categories"
         ],
-        "description": "Endpoint para detalhar uma categoria.",
+        "description": "Exibe detalhes de uma categoria.",
         "parameters": [
           {
             "name": "id",
@@ -135,7 +135,7 @@
         "tags": [
           "Categories"
         ],
-        "description": "Endpoint para alterar uma categoria.",
+        "description": "Atualiza dados de uma categoria.",
         "parameters": [
           {
             "name": "id",
@@ -146,7 +146,7 @@
           {
             "name": "filtro",
             "in": "path",
-            "description": "Digite o ID da Categoria para alterar",
+            "description": "Digite o ID da Categoria para atualizar",
             "type": "number"
           }
         ],
@@ -203,7 +203,7 @@
         "tags": [
           "Categories"
         ],
-        "description": "Endpoint para remover uma categoria.",
+        "description": "Deleta uma categoria.",
         "parameters": [
           {
             "name": "id",
@@ -214,7 +214,7 @@
           {
             "name": "filtro",
             "in": "path",
-            "description": "Digite o ID da Categoria para remover",
+            "description": "Digite o ID da Categoriaque será deletada",
             "type": "number"
           }
         ],
@@ -236,64 +236,145 @@
     },
     "/products": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Categories"
+        ],
+        "description": "Exibe todos os produtos cadastrados.",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Sucesso!",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
           }
         }
       },
       "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
+        "tags": [
+          "Products"
+        ],
+        "description": "Cadastra Produtos.",
+        "parameters": [
+          {
+            "name": "info",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Notebook Samsung"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Samsung Book Core i5-1135G7, 8G, 256GB SSD, Iris Xe, 15.6 FHD, W11 Cinza"
+                },
+                "slug": {
+                  "type": "string",
+                  "example": "notebook-samsung"
+                },
+                "unitPrice": {
+                  "type": "number",
+                  "example": 3523
+                },
+                "quantityStock": {
+                  "type": "number",
+                  "example": 1
+                },
+                "idCategory": {
+                  "type": "string",
+                  "example": "INFORMÁTICA"
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "slug",
+                "unitPrice",
+                "quantityStock",
+                "idCategory"
+              ]
+            }
+          }
+        ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Criado com Sucesso!",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Falha ao cadastrar Produto!"
           }
         }
       }
     },
     "/products/{id}": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Products"
+        ],
+        "description": "Exibe detalhes de um produto.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "description": "ID do produto."
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Sucesso!",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
           },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Products"
+            },
+            "description": "Produto não localizado!"
           }
         }
       },
       "put": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Products"
+        ],
+        "description": "Atualiza dados de um produto.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "filtro",
+            "in": "path",
+            "description": "Digite o ID da produto para altualizar",
+            "type": "number"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Produto atualizado com sucesso!",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Products"
+            },
+            "description": "Produto não encontrado!"
           },
           "500": {
             "description": "Internal Server Error"
@@ -301,19 +382,36 @@
         }
       },
       "delete": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Products"
+        ],
+        "description": "Deleta um produto.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "filtro",
+            "in": "path",
+            "description": "Digite o ID do produto que será deletado",
+            "type": "number"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Produto removido com Sucesso!",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/Products"
+            },
+            "description": "Produto não encontrada!"
           },
           "500": {
             "description": "Internal Server Error"
@@ -326,10 +424,6 @@
     "Categories": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "number",
-          "example": 1
-        },
         "name": {
           "type": "string",
           "example": "Phone"
@@ -340,7 +434,6 @@
         }
       },
       "required": [
-        "id",
         "name",
         "status"
       ]
@@ -380,6 +473,89 @@
         "unitPrice",
         "quantityStock",
         "idCategory"
+      ]
+    },
+    "Accounts": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Lawrence Fry"
+        },
+        "email": {
+          "type": "string",
+          "example": "lawrencefry@silodyne.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "6cf0cfb7-3099-428d-865a-ed8ad1135ea9"
+        },
+        "cpf": {
+          "type": "string",
+          "example": "180.270.999-62"
+        },
+        "phone": {
+          "type": "string",
+          "example": "+55 (96) 93282-4623"
+        },
+        "address": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "street": {
+                "type": "string",
+                "example": "Flatlands Avenue"
+              },
+              "number": {
+                "type": "number",
+                "example": 415
+              },
+              "complement": {
+                "type": "string",
+                "example": ""
+              },
+              "zipCode": {
+                "type": "string",
+                "example": "66.117-1"
+              },
+              "city": {
+                "type": "string",
+                "example": "Barclay"
+              },
+              "state": {
+                "type": "string",
+                "example": "Virgin Islands"
+              },
+              "status": {
+                "type": "boolean",
+                "example": true
+              }
+            },
+            "required": [
+              "street",
+              "number",
+              "complement",
+              "zipCode",
+              "city",
+              "state",
+              "status"
+            ]
+          }
+        },
+        "status": {
+          "type": "boolean",
+          "example": true
+        }
+      },
+      "required": [
+        "name",
+        "email",
+        "password",
+        "cpf",
+        "phone",
+        "address",
+        "status"
       ]
     }
   }

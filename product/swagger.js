@@ -46,7 +46,6 @@ const doc = {
     },
     definitions: {
         Categories: {
-            $id: 1,
             $name: "Phone",
             $status: true
         },
@@ -58,13 +57,27 @@ const doc = {
             $quantityStock: 1,
             $idCategory: "INFORMÁTICA"
         },
-  
+        Accounts: { 
+            $name: "Lawrence Fry",
+            $email: "lawrencefry@silodyne.com",
+            $password: "6cf0cfb7-3099-428d-865a-ed8ad1135ea9",
+            $cpf: "180.270.999-62",
+            $phone: "+55 (96) 93282-4623",
+            $address: [
+            {
+                $street: "Flatlands Avenue",
+                $number: 415,
+                $complement: "",
+                $zipCode: "66.117-1",
+                $city: "Barclay",
+                $state: "Virgin Islands",
+                $status: true
+            }
+            ],
+            $status: true
+        }
 }
 }
 
 swaggerAutogen2(outputFile, endpointsFiles, doc)
 
-
-// .then(() => {
-//     import ('./src/config/server.js')
-// })
