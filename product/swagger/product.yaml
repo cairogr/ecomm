@@ -36,6 +36,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Categories'
+        '400':
+          description: ID Inválido 
+          content:
+            application/json:
+              example: "Invalid ID"
+        '404':
+          description: Categoria não encontrada
+          content:
+            application/json:
+              example: "ID not found"  
   /api/admin/categories:
     post:
       tags: 
@@ -50,12 +60,12 @@ paths:
                 name:
                   type: string
       responses:
-        201:
+        '201':
           description: Sucesso!
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Categories"
+                $ref: "#/components/schemas/Categories"               
   /api/categories/{id}:
     parameters:
     - name: id
