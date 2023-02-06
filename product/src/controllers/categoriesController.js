@@ -2,9 +2,9 @@ import categories from "../models/categories.js";
 
 class CategoriesController {
 
-  static listagemCategorias = (req, res) => {
+  static readAllCategories = (req, res) => {
     // #swagger.tags = ['Categories']
-    // #swagger.description = 'Endpoint para listar categorias.'
+    // #swagger.description = 'Exibe todas as categorias cadastradas.'
     categories.find((err, categories) => {
       res.status(200).json(categories)
   })
@@ -13,9 +13,9 @@ class CategoriesController {
         description: 'Sucesso!' 
     } */
   }
-  static insercaoCategorias = (req, res) => {
+  static createCategories = (req, res) => {
     // #swagger.tags = ['Categories']
-    // #swagger.description = 'Endpoint para inserir categorias.'
+    // #swagger.description = 'Cadastra Categorias'
     /* #swagger.parameters['info'] = {
         in: 'body',
         required: true,
@@ -43,9 +43,9 @@ class CategoriesController {
       }) 
   }
 
-  static detalhamentoCategoriaPorId = (req, res) => {
+  static readCategoryById = (req, res) => {
     // #swagger.tags = ['Categories']
-    // #swagger.description = 'Endpoint para detalhar uma categoria.' 
+    // #swagger.description = 'Exibe detalhes de uma categoria.' 
     /* #swagger.parameters['id'] = { 
         description: 'ID da categoria.',
         in: 'path',
@@ -71,12 +71,12 @@ class CategoriesController {
   }
 
 
-  static alteraCategoria = (req, res) => {
+  static updateCategory = (req, res) => {
     // #swagger.tags = ['Categories']
-    // #swagger.description = 'Endpoint para alterar uma categoria.'
+    // #swagger.description = 'Atualiza dados de uma categoria.'
     /* #swagger.parameters['filtro'] = {
 	      in: 'path',
-        description: 'Digite o ID da Categoria para alterar',
+        description: 'Digite o ID da Categoria para atualizar',
         type: 'number'
     } */  
 
@@ -101,12 +101,12 @@ class CategoriesController {
   }
 
 
-  static removeCategoria = (req, res) => {
+  static deleteCategory = (req, res) => {
     // #swagger.tags = ['Categories']
-    // #swagger.description = 'Endpoint para remover uma categoria.'
+    // #swagger.description = 'Deleta uma categoria.'
     /* #swagger.parameters['filtro'] = {
 	      in: 'path',
-        description: 'Digite o ID da Categoria para remover',
+        description: 'Digite o ID da Categoriaque será deletada',
         type: 'number'
     } */  
     const id = req.params.id;
@@ -131,7 +131,7 @@ class CategoriesController {
 
 
 
-  static ativaCategoria = (req, res) => {
+  static activeCategorie = (req, res) => {
     const id = req.params.id;
     // #swagger.tags = ['Categories']
     // #swagger.description = 'Endpoint para alterar o status da categoria para ativa.'
