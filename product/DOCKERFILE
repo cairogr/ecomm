@@ -1,5 +1,6 @@
-FROM node:14
+FROM node:latest
 WORKDIR /app-node
 COPY . .
-RUN npm install
+EXPOSE 3001/tcp
+EXPOSE 3001/udp
 ENTRYPOINT npm start
