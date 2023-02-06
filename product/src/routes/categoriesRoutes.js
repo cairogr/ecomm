@@ -1,15 +1,15 @@
 import express from "express";
-import CategoriesController from "../controllers/CategoriesController.js";
+import CategoriesController from "./../controllers/categoriesController.js";
 
 const router = express.Router();
 
 router
-  .get("/categories", CategoriesController.listagemCategorias)
-  .get("/categories/:id", CategoriesController.detalhamentoCategoriaPorId)
-  .post("/categories", CategoriesController.insercaoCategorias)
-  .put("/categories/:id", CategoriesController.alteraCategoria)
-  .patch("/categories/:id", CategoriesController.ativaCategoria)
-  .delete("/categories/:id", CategoriesController.removeCategoria)
+  .get("/categories", CategoriesController.readAllCategories)
+  .get("/categories/:id", CategoriesController.readCategoryById)
+  .post("/admin/categories", CategoriesController.createCategories)
+  .put("/admin/categories/:id", CategoriesController.updateCategory)
+  .patch("/admin/categories/:id", CategoriesController.activeCategorie)
+  .delete("/admin/categories/:id", CategoriesController.deleteCategory)
 
 
 export default router;   
