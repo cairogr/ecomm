@@ -9,18 +9,24 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: secret 
     ports:
       - 27017:27017
+    networks:
+      - compose-bridge      
     volumes:
       - mongoecomm:/data/db
   product: 
-    image: cairoribeiro/ecomm-product:1.0
+    image: cairoribeiro/ecomm-product:1.2
     container_name: ecomm-product
     networks:
       - compose-bridge
+    ports:
+      - 3003:3003
   account: 
-    image: cairoribeiro/ecomm-account:1.0
+    image: cairoribeiro/ecomm-account:1.2
     container_name: ecomm-account
     networks:
       - compose-bridge
+    ports:
+      - 3002:3002 
 networks: 
   compose-bridge:
     driver: bridge
