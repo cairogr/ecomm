@@ -5,7 +5,7 @@
     "main": "src/main.js",
     "type": "module",
     "scripts": {
-        "start": "nodemon ./src/config/server.js",
+        "start": "node ./src/config/server.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "swagger-autogen": "node swagger.js"
     },
@@ -14,9 +14,11 @@
     "dependencies": {
         "express": "^4.18.2",
         "mongoose": "^6.9.0",
-        "nodemon": "^2.0.20",
         "swagger-autogen": "^2.10.4",
         "swagger-jsdoc": "^6.2.8",
         "swagger-ui-express": "^4.6.0"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.20"
     }
 }

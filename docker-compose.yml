@@ -1,5 +1,6 @@
 version: "3.9"
 services:
+
   mongo:
     image: mongo
     restart: always
@@ -13,22 +14,42 @@ services:
       - compose-bridge      
     volumes:
       - mongoecomm:/data/db
+
+  mysql:
+    image: mysql
+    restart: always
+    container_name: mysql-ecomm
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - 3306:3306
+    networks:
+      - compose-bridge      
+    volumes:
+      - mysqlecomm:/var/lib/mysql
+
   product: 
-    image: cairoribeiro/ecomm-product:1.2
+    build: "./product"
     container_name: ecomm-product
     networks:
       - compose-bridge
     ports:
       - 3003:3003
+
+
   account: 
-    image: cairoribeiro/ecomm-account:1.2
+    build: "./account"
     container_name: ecomm-account
     networks:
       - compose-bridge
     ports:
       - 3002:3002 
+
+
+
 networks: 
   compose-bridge:
     driver: bridge
 volumes:
   mongoecomm:
+  mysqlecomm:
