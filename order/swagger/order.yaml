@@ -20,7 +20,7 @@ tags:
     description: Operations about order
 
 paths:
-  /api/Order:
+  /api/order:
     get: 
       tags:
       - order
@@ -52,7 +52,7 @@ paths:
                 $ref: '#/components/schemas/Order'      
         '400':
           description: Invalid input  
-  /api/Order/{id}:
+  /api/order/{id}:
     parameters:
       - name: id
         in: path

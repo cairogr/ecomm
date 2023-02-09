@@ -3,11 +3,22 @@
     "version": "1.0.0",
     "description": "",
     "main": "src/main.js",
+    "type": "module",
     "scripts": {
-      "start": "node ./src/main.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node ./src/config/server.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "swagger-autogen": "node swagger.js"
     },
-    "author": "Wanderson Macêdo",
-    "license": "MIT"
-  }
-
+    "author": "Cairo Ribeiro",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.18.2",
+        "mongoose": "^6.9.0",
+        "swagger-autogen": "^2.10.4",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^4.6.0"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.20"
+    }
+}
