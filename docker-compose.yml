@@ -1,17 +1,16 @@
 version: "3.9"
 services:
-
   mongo:
     image: mongo
     restart: always
     container_name: mongo-ecomm
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: secret 
+      MONGO_INITDB_ROOT_PASSWORD: secret
     ports:
       - 27017:27017
     networks:
-      - compose-bridge      
+      - compose-bridge
     volumes:
       - mongoecomm:/data/db
 
@@ -24,11 +23,9 @@ services:
     ports:
       - 3306:3306
     networks:
-      - compose-bridge      
-    volumes:
-      - mysqlecomm:/var/lib/mysql
+      - compose-bridge
 
-  product: 
+  product:
     build: "./product"
     container_name: ecomm-product
     networks:
@@ -36,18 +33,15 @@ services:
     ports:
       - 3003:3003
 
-
-  account: 
+  account:
     build: "./account"
     container_name: ecomm-account
     networks:
       - compose-bridge
     ports:
-      - 3002:3002 
+      - 3002:3002
 
-
-
-networks: 
+networks:
   compose-bridge:
     driver: bridge
 volumes:
