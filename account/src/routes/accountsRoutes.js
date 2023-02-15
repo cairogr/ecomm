@@ -8,7 +8,6 @@ router
   .get("/admin/accounts/:id", AccountsController.readAccountById)
   .post("/accounts", AccountsController.createAccounts)
   .put("/admin/accounts/:id", AccountsController.updateAccount)
-  .delete("/admin/accounts/:id", AccountsController.deleteAccount)
+  .delete("/admin/accounts/:id", AccountsController.deleteAccount);
 
-
-export default router;   
+export default router;
