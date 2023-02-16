@@ -1,10 +1,11 @@
 const database = require("../models");
 const shortid = require("shortid");
+const { sequelize } = require("../models");
 
 const UNPROCESSABLE_ENTITY = {
   name: "UNPROCESSABLE_ENTITY",
   message:
-    "The requested action could not be performed, semantically incorrect, or failed business validation."
+    "The requested action could not be performed, semantically incorrect, or failed business validation.",
 };
 
 class PaymentsController {
@@ -70,8 +71,8 @@ class PaymentsController {
 
     if (countError.length == 0) {
       try {
-        await database.Payment.create(newPaymentData);
-        const findPayment = await database.Payment.findOne({
+        await database.Payments.create(newPaymentData);
+        const findPayment = await database.Payments.findOne({
           where: { id: newPaymentData.id },
           attributes: { exclude: ["cvv"] },
         });
@@ -89,7 +90,7 @@ class PaymentsController {
 
   static async readAllPayment(req, res) {
     try {
-      const findPayment = await database.Payment.findAll({
+      const findPayment = await database.Payments.findAll({
         attributes: { exclude: ["cvv", "links"] },
       });
       return res.status(200).json(findPayment);
@@ -101,7 +102,7 @@ class PaymentsController {
   static async readPaymentById(req, res) {
     const { id } = req.params;
     try {
-      const findPaymentByID = await database.Payment.findOne({
+      const findPaymentByID = await database.Payments.findOne({
         where: { id: id },
         attributes: { exclude: ["cvv"] },
       });
@@ -121,7 +122,7 @@ class PaymentsController {
     const { id, status } = req.params;
     const clientData = req.body;
 
-    const findPayment = await database.Payment.findOne({
+    const findPayment = await database.Payments.findOne({
       where: { id: id },
     });
 
@@ -133,13 +134,10 @@ class PaymentsController {
       if (status.toUpperCase() == "CONFIRMADO") {
         clientData.paymentID = id;
 
-        await database.Invoice.create(clientData);
+        const findInvoice = await database.Invoices.create(clientData);
+        console.log(findInvoice);
 
-        const findInvoice = await database.Invoice.findOne({
-          where: { paymentID: id },
-        });
-
-        await database.Payment.update(
+        await database.Payments.update(
           { status: status.toUpperCase(), invoiceID: findInvoice.id },
           { where: { id: id } }
         );
@@ -147,11 +145,11 @@ class PaymentsController {
         return res.status(200).json(findInvoice);
       } else {
         try {
-          await database.Payment.update(
+          await database.Paymenst.update(
             { status: status.toUpperCase() },
             { where: { id: id } }
           );
-          const updatenewPaymentData = await database.Payment.findOne({
+          const updatenewPaymentData = await database.Payments.findOne({
             where: { id: id },
             attributes: { exclude: ["links"] },
           });
@@ -169,7 +167,7 @@ class PaymentsController {
     const { id } = req.params;
     const { status } = req.body;
 
-    const findPayment = await database.Payment.findOne({
+    const findPayment = await database.Payments.findOne({
       where: { id: id },
     });
 
@@ -179,10 +177,7 @@ class PaymentsController {
         status.toUpperCase() == "CONFIRMADO")
     ) {
       try {
-        await database.Payment.update(
-          { status },
-          { where: { id: Number(id) } }
-        );
+        await database.Payments.update({ status }, { where: { id: id } });
         return res.status(200).json({
           mensagem: `Payment ID: ${id}  Payment Status: ${status}`,
         });
@@ -197,7 +192,7 @@ class PaymentsController {
   static async deletePayment(req, res) {
     const { id } = req.params;
     try {
-      await database.Payment.destroy({ where: { id: id } });
+      await database.Payments.destroy({ where: { id: id } });
       return res.status(200).json({ mensagem: `Payment ID: ${id}  removed!` });
     } catch {
       return res

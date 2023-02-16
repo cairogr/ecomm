@@ -11,9 +11,10 @@ module.exports = {
       },
       paymentID: {
         type: Sequelize.STRING,
+        references: { model: 'Payments', key: 'id'}
       },
       buyerName: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       buyerCpf: {
         type: Sequelize.STRING
@@ -26,11 +27,11 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       }
 
     });

@@ -10,22 +10,22 @@ module.exports = {
         type: Sequelize.STRING,
       },
       value: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL
       },
       nameOnCard: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       numberOnCard: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       cardExpiration: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       cvv: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       status: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       invoiceID: {
         type: Sequelize.INTEGER,
@@ -35,11 +35,11 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
     });
   },
