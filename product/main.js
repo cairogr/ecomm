@@ -15,6 +15,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 routes(app);
 
-console.log("iniciando product");
+console.log("Init Service Product");
 
 export default app;

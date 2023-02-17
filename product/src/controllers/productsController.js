@@ -1,7 +1,7 @@
 import products from "../models/products.js";
 
 class ProductsController {
-  static realAllProducts = (req, res) => {
+  static readAllProducts = (req, res) => {
     products.find((err, products) => {
       // #swagger.tags = ['Categories']
       // #swagger.description = 'Exibe todos os produtos cadastrados.'
