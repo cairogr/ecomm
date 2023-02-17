@@ -41,6 +41,21 @@ services:
     ports:
       - 3002:3002
 
+  finance:
+    build: "./finance"
+    container_name: ecomm-finance
+    networks:
+      - compose-bridge
+    ports:
+      - 3004:3004    
+
+  order:
+    build: "./order"
+    container_name: ecomm-order
+    networks:
+      - compose-bridge
+    ports:
+      - 3005:3005
 networks:
   compose-bridge:
     driver: bridge
