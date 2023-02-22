@@ -1,17 +1,12 @@
 const database = require("../models");
 const shortid = require("shortid");
 const { sequelize } = require("../models");
-
-const UNPROCESSABLE_ENTITY = {
-  name: "UNPROCESSABLE_ENTITY",
-  message:
-    "The requested action could not be performed, semantically incorrect, or failed business validation.",
-};
+const {UNPROCESSABLE_ENTITY, STATUS} = require("../utils/constantes.js")
 
 class PaymentsController {
   static async createPayment(req, res) {
     const newPaymentData = req.body;
-    newPaymentData.status = "CRIADO";
+    newPaymentData.status = STATUS.CRIADO;
     newPaymentData.links = [
       {
         href: `http://localhost:3000/v1/payments/${newPaymentData.id}/`,
@@ -120,11 +115,11 @@ class PaymentsController {
     });
 
     if (
-      findPayment.status.toUpperCase() == "CRIADO" &&
-      (status.toUpperCase() == "CANCELADO" ||
-        status.toUpperCase() == "CONFIRMADO")
+      findPayment.status.toUpperCase() == STATUS.CRIADO &&
+      (status.toUpperCase() == STATUS.CANCELADO ||
+        status.toUpperCase() == STATUS.CONFIRMADO)
     ) {
-      if (status.toUpperCase() == "CONFIRMADO") {
+      if (status.toUpperCase() == STATUS.CONFIRMADO) {
         clientData.paymentID = id;
 
         const findInvoice = await database.Invoices.create(clientData);
@@ -165,9 +160,9 @@ class PaymentsController {
     });
 
     if (
-      findPayment.status.toUpperCase() == "CRIADO" &&
-      (status.toUpperCase() == "CANCELADO" ||
-        status.toUpperCase() == "CONFIRMADO")
+      findPayment.status.toUpperCase() == STATUS.CRIADO &&
+      (status.toUpperCase() == STATUS.CANCELADO ||
+        status.toUpperCase() == STATUS.CONFIRMADO)
     ) {
       try {
         await database.Payments.update({ status }, { where: { id: Number(id) } });
