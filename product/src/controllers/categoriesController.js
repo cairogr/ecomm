@@ -4,9 +4,13 @@ class CategoriesController {
   static readAllCategories = (req, res) => {
     // #swagger.tags = ['Categories']
     // #swagger.description = 'Exibe todas as categorias cadastradas.'
-    categories.find((err, categories) => {
+    try{
+      categories.find((err, categories) => {
       res.status(200).json(categories);
-    });
+    });}
+    catch(error){
+      res.status(404).json(error);
+    }
     /* #swagger.responses[200] = { 
         schema: { $ref: "#/definitions/Categories" },
         description: 'Sucesso!' 
