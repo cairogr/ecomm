@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       paymentID: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         references: { model: 'Payments', key: 'id'}
       },
       buyerName: {

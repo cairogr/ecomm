@@ -11,13 +11,6 @@ const UNPROCESSABLE_ENTITY = {
 class PaymentsController {
   static async createPayment(req, res) {
     const newPaymentData = req.body;
-    newPaymentData.id =
-      Math.floor(Date.now() * Math.random())
-        .toString(36)
-        .toUpperCase() +
-      Math.floor(Date.now() * Math.random())
-        .toString(36)
-        .toUpperCase();
     newPaymentData.status = "CRIADO";
     newPaymentData.links = [
       {
@@ -73,7 +66,7 @@ class PaymentsController {
       try {
         await database.Payments.create(newPaymentData);
         const findPayment = await database.Payments.findOne({
-          where: { id: newPaymentData.id },
+          where: { id: Number(newPaymentData.id) },
           attributes: { exclude: ["cvv"] },
         });
         return res
@@ -103,7 +96,7 @@ class PaymentsController {
     const { id } = req.params;
     try {
       const findPaymentByID = await database.Payments.findOne({
-        where: { id: id },
+        where: { id: Number(id) },
         attributes: { exclude: ["cvv"] },
       });
       if (findPaymentByID != null) {
@@ -123,7 +116,7 @@ class PaymentsController {
     const clientData = req.body;
 
     const findPayment = await database.Payments.findOne({
-      where: { id: id },
+      where: { id: Number(id) },
     });
 
     if (
@@ -139,7 +132,7 @@ class PaymentsController {
 
         await database.Payments.update(
           { status: status.toUpperCase(), invoiceID: findInvoice.id },
-          { where: { id: id } }
+          { where: { id: Number(id) } }
         );
 
         return res.status(200).json(findInvoice);
@@ -150,7 +143,7 @@ class PaymentsController {
             { where: { id: id } }
           );
           const updatenewPaymentData = await database.Payments.findOne({
-            where: { id: id },
+            where: { id: Number(id) },
             attributes: { exclude: ["links"] },
           });
           return res.status(200).json(updatenewPaymentData);
@@ -168,7 +161,7 @@ class PaymentsController {
     const { status } = req.body;
 
     const findPayment = await database.Payments.findOne({
-      where: { id: id },
+      where: { id: Number(id) },
     });
 
     if (
@@ -177,7 +170,7 @@ class PaymentsController {
         status.toUpperCase() == "CONFIRMADO")
     ) {
       try {
-        await database.Payments.update({ status }, { where: { id: id } });
+        await database.Payments.update({ status }, { where: { id: Number(id) } });
         return res.status(200).json({
           mensagem: `Payment ID: ${id}  Payment Status: ${status}`,
         });
@@ -192,7 +185,7 @@ class PaymentsController {
   static async deletePayment(req, res) {
     const { id } = req.params;
     try {
-      await database.Payments.destroy({ where: { id: id } });
+      await database.Payments.destroy({ where: { id: Number(id) } });
       return res.status(200).json({ mensagem: `Payment ID: ${id}  removed!` });
     } catch {
       return res

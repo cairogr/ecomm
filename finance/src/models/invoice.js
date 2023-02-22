@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Invoices.init(
     {
-      //paymentID: DataTypes.STRING,
+      //paymentID: DataTypes.INTEGER,
       buyerName: DataTypes.STRING,
       buyerCpf: DataTypes.STRING,
       buyerAddress: DataTypes.JSON,
