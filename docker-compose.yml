@@ -24,6 +24,8 @@ services:
       - 3306:3306
     networks:
       - compose-bridge
+    volumes:
+      - mysqlecomm:/var/lib/mysql
 
   product:
     build: "./product"
@@ -32,6 +34,8 @@ services:
       - compose-bridge
     ports:
       - 3003:3003
+    volumes:
+      - ./product:/app-node
 
   account:
     build: "./account"
@@ -40,6 +44,8 @@ services:
       - compose-bridge
     ports:
       - 3002:3002
+    volumes:
+      - ./account:/app-node
 
   finance:
     build: "./finance"
@@ -47,7 +53,9 @@ services:
     networks:
       - compose-bridge
     ports:
-      - 3004:3004    
+      - 3004:3004
+    volumes:
+      - ./finance:/app-node    
 
   order:
     build: "./order"
@@ -56,6 +64,8 @@ services:
       - compose-bridge
     ports:
       - 3005:3005
+    volumes:
+      - ./order:/app-node
 networks:
   compose-bridge:
     driver: bridge
