@@ -7,24 +7,8 @@ class PaymentsController {
   static async createPayment(req, res) {
     const newPaymentData = req.body;
     newPaymentData.status = STATUS.CRIADO;
-    newPaymentData.links = [
-      {
-        href: `http://localhost:3000/v1/payments/${newPaymentData.id}/`,
-        rel: "self",
-        method: "GET",
-      },
-      {
-        rel: "Cancelar",
-        method: "PATCH",
-        href: `http://localhost:3000/v1/payments/${newPaymentData.id}/auth/cancelado`,
-      },
-      {
-        rel: "Confirmar",
-        method: "PATCH",
-        href: `http://localhost:3000/v1/payments/${newPaymentData.id}/auth/confirmado`,
-      },
-    ];
-
+    //console.log(newPaymentData.id)
+    
     const validationNameOnCard = /\b([A-Z][a-z]+[ ]*)+/;
     const validationNumberOnCard = /^([0-9]{16})$/;
     const validationCardExpiration = /^[0-9]{4}-(1[0-3]|0[1-9])$/;
@@ -57,16 +41,31 @@ class PaymentsController {
       countError.push("Enter with a valid CVV card");
     }
 
-    if (countError.length == 0) {
+    if (countError.length === 0) {
       try {
-        await database.Payments.create(newPaymentData);
-        const findPayment = await database.Payments.findOne({
-          where: { id: Number(newPaymentData.id) },
-          attributes: { exclude: ["cvv"] },
-        });
+        const findPayment = await database.Payments.create(newPaymentData);
+        const newLinks = [
+          {
+            href: `http://localhost:3000/v1/payments/${findPayment.id}/`,
+            rel: "self",
+            method: "GET",
+          },
+          {
+            rel: "Cancelar",
+            method: "PATCH",
+            href: `http://localhost:3000/v1/payments/${findPayment.id}/auth/cancelado`,
+          },
+          {
+            rel: "Confirmar",
+            method: "PATCH",
+            href: `http://localhost:3000/v1/payments/${findPayment.id}/auth/confirmado`,
+          },
+        ];
+        console.log(findPayment.id)
+        await database.Payments.update({links : newLinks}, {where: { id: Number (findPayment.id)}});
         return res
           .status(201)
-          .location(`http://localhost:3000/payments/${newPaymentData.id}`)
+          .location(`http://localhost:3000/payments/${findPayment.id}`)
           .json(findPayment);
       } catch (error) {
         return res.status(500).json(error.message);
@@ -94,7 +93,7 @@ class PaymentsController {
         where: { id: Number(id) },
         attributes: { exclude: ["cvv"] },
       });
-      if (findPaymentByID != null) {
+      if (!findPaymentByID) {
         return res.status(200).json(findPaymentByID);
       } else {
         return res
@@ -115,22 +114,29 @@ class PaymentsController {
     });
 
     if (
-      findPayment.status.toUpperCase() == STATUS.CRIADO &&
-      (status.toUpperCase() == STATUS.CANCELADO ||
-        status.toUpperCase() == STATUS.CONFIRMADO)
+      findPayment.status.toUpperCase() === STATUS.CRIADO &&
+      (status.toUpperCase() === STATUS.CANCELADO ||
+        status.toUpperCase() === STATUS.CONFIRMADO)
     ) {
-      if (status.toUpperCase() == STATUS.CONFIRMADO) {
+      if (status.toUpperCase() === STATUS.CONFIRMADO) {
+        await database.sequelize.transaction(async (t) => {
         clientData.paymentID = id;
 
-        const findInvoice = await database.Invoices.create(clientData);
-        console.log(findInvoice);
+        const findInvoice = await database.Invoices.create({clientData}, { transaction: t });
 
         await database.Payments.update(
           { status: status.toUpperCase(), invoiceID: findInvoice.id },
-          { where: { id: Number(id) } }
+          { where: { id: Number(id) } }, { transaction: t }
         );
 
-        return res.status(200).json(findInvoice);
+        const returnInvoice = await database.Payments.findOne(
+          { where: { id: Number(id) },
+          attributes: { exclude: ["cvv"] } }
+        );
+
+        return res.status(200).json(returnInvoice);
+
+      })
       } else {
         try {
           await database.Paymenst.update(
@@ -160,9 +166,9 @@ class PaymentsController {
     });
 
     if (
-      findPayment.status.toUpperCase() == STATUS.CRIADO &&
-      (status.toUpperCase() == STATUS.CANCELADO ||
-        status.toUpperCase() == STATUS.CONFIRMADO)
+      findPayment.status.toUpperCase() === STATUS.CRIADO &&
+      (status.toUpperCase() === STATUS.CANCELADO ||
+        status.toUpperCase() === STATUS.CONFIRMADO)
     ) {
       try {
         await database.Payments.update({ status }, { where: { id: Number(id) } });
