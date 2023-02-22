@@ -118,7 +118,7 @@ class CategoriesController {
 
     categories.findByIdAndDelete(id, (err) => {
       if (!err) {
-        res.status(200).send({ message: "Categoria removida com sucesso" });
+        res.status(204).send({ message: "Categoria removida com sucesso" });
         /* #swagger.responses[200] = { 
           schema: { $ref: "#/definitions/Categories" },
           description: 'Categoria Removida com Sucesso!' 

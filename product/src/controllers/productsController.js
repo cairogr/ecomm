@@ -27,7 +27,7 @@ class ProductsController {
             $idCategory: "INFORMÁTICA"
                 }
     } */
-    let produto = new products(req.body);
+    let produto = new Products(req.body);
 
     produto.save((err) => {
       if (err) {
