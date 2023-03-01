@@ -67,11 +67,11 @@ class OrdersController {
     const orderData = req.body;
 
 
-    let productData = await fetch(`http://localhost:3003/products/${id}`)
+    let productData = await fetch(`http://localhost:3003/products/${orderData.buyerID}`)
     .then(response => response.json())
     .catch(console.error);
 
-    let accountsData = await fetch(`http://localhost:3002/accounts/${id}`)
+    let accountsData = await fetch(`http://localhost:3002/admin/accounts/${id}`)
     .then(response => response.json())
     .catch(console.error);
 
