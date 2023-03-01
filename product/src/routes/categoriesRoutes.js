@@ -9,7 +9,6 @@ router
   .post("/admin/categories", CategoriesController.createCategories)
   .put("/admin/categories/:id", CategoriesController.updateCategory)
   .patch("/admin/categories/:id", CategoriesController.activeCategorie)
-  .delete("/admin/categories/:id", CategoriesController.deleteCategory)
+  .delete("/admin/categories/:id", CategoriesController.deleteCategory);
 
-
-export default router;   
+export default router;
