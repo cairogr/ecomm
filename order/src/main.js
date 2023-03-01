@@ -6,7 +6,7 @@ console.log("Init Service Orders");
 
 const port = process.env.PORT || 3005;
 app.listen(port, () => {
-  console.log(`Servidor escutando em http://localhost:${port}`);
+	console.log(`Servidor escutando em http://localhost:${port}`);
 });
 routes(app);
 
