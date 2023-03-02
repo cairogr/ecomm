@@ -27,7 +27,7 @@ class ProductsController {
             $idCategory: "INFORMÁTICA"
                 }
     } */
-		let produto = new Products(req.body);
+		let produto = new products(req.body);
 
 		produto.save((err) => {
 			if (err) {
@@ -113,7 +113,7 @@ class ProductsController {
 
 		products.findByIdAndDelete(id, (err) => {
 			if (!err) {
-				res.status(200).send({ message: "Produto removida com sucesso" });
+				res.status(204).send({ message: "Produto removida com sucesso" });
 				/* #swagger.responses[200] = { 
           schema: { $ref: "#/definitions/Products" },
           description: 'Produto removido com Sucesso!' 
