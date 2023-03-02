@@ -59,7 +59,7 @@ class PaymentsController {
 		try {
 			const paymentByID = await findPaymentData(id);
 			
-			if (!paymentByID) {
+			if (paymentByID) {
 				return res.status(200).json(paymentByID);
 			} else {
 				return res
