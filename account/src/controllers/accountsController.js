@@ -112,7 +112,7 @@ class AccountsController {
 
 		accounts.findByIdAndDelete(id, (err) => {
 			if (!err) {
-				res.status(200).send({ message: "Usuário removido com sucesso" });
+				res.status(204).send({ message: "Usuário removido com sucesso" });
 				/* #swagger.responses[200] = { 
           schema: { $ref: "#/definitions/Accounts" },
           description: 'Usuário removido com Sucesso!' 
