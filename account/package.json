@@ -7,11 +7,12 @@
   "scripts": {
     "start": "node ./src/config/server.js",
     "dev": "nodemon ./src/config/server.js",
-    "test":  "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.9.0"
   },
