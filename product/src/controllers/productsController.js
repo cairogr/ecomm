@@ -84,22 +84,25 @@ class ProductsController {
         type: 'number'
     } */
 		const id = req.params.id;
+		if (!req.body){
+			products.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+				if (!err) {
+					res.status(200).send({ message: "Produto atualizada com sucesso" });
+					/* #swagger.responses[200] = { 
+			  schema: { $ref: "#/definitions/Products" },
+			  description: 'Produto atualizado com sucesso!' 
+			} */
+				} else {
+					res.status(500).send({ message: err.message });
+					/* #swagger.responses[404] = { 
+			  schema: { $ref: "#/definitions/Products" },
+			  description: 'Produto não encontrado!' 
+			} */
+				}});}
+		else {
+			res.status(500).send({ message: "erro"});
 
-		products.findByIdAndUpdate(id, { $set: req.body }, (err) => {
-			if (!err) {
-				res.status(200).send({ message: "Produto atualizada com sucesso" });
-				/* #swagger.responses[200] = { 
-          schema: { $ref: "#/definitions/Products" },
-          description: 'Produto atualizado com sucesso!' 
-        } */
-			} else {
-				res.status(500).send({ message: err.message });
-				/* #swagger.responses[404] = { 
-          schema: { $ref: "#/definitions/Products" },
-          description: 'Produto não encontrado!' 
-        } */
-			}
-		});
+		}
 	};
 	static deleteProduct = (req, res) => {
 		// #swagger.tags = ['Products']

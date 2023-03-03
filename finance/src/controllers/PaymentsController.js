@@ -93,7 +93,7 @@ class PaymentsController {
 					);
 
 					await database.Payments.update(
-						{  invoiceID: 'dsadsdf' },
+						{  invoiceID: newInvoice.id },
 						{ where: { id: Number(id) }, t}
 					);
 					//const dataPayment = await findPaymentData(id);

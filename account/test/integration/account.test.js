@@ -3,7 +3,6 @@ import request from "supertest";
 import app from "../../src/main.js";
 import mongoose from "mongoose";
 
-
 afterAll(done => {
 	// Closing the DB connection allows Jest to exit successfully.
 	mongoose.connection.close();
