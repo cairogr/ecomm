@@ -1,10 +1,16 @@
-import { describe, it } from "@jest/globals";
+import { describe, it, afterAll } from "@jest/globals";
 import request from "supertest";
 import app from "../../src/main.js";
+import mongoose from "mongoose";
 
+
+afterAll(done => {
+	// Closing the DB connection allows Jest to exit successfully.
+	mongoose.connection.close();
+	done();
+});
 
 let id;
-
 describe("Test Accounts", () => {
 	it("returns all accounts", async () => {
 		const response = await request(app)
