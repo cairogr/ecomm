@@ -8,6 +8,7 @@
         "start": "node ./src/config/server.js",
         "dev": "nodemon ./src/config/server.js",
         "test": " node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose",
+        "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --coverage",
         "swagger-autogen": "node swagger.js"
     },
     "author": "Cairo Ribeiro",

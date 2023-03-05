@@ -84,7 +84,7 @@ class ProductsController {
         type: 'number'
     } */
 		const id = req.params.id;
-		if (!req.body){
+		if (req.body!=""){
 			products.findByIdAndUpdate(id, { $set: req.body }, (err) => {
 				if (!err) {
 					res.status(200).send({ message: "Produto atualizada com sucesso" });
