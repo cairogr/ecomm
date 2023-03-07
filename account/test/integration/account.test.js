@@ -22,7 +22,7 @@ describe("Test Accounts", () => {
 	});
 
 	it("create a account - ERROR", async () => {
-		const response = await request(app)
+		await request(app)
 			.post("/accounts")
 			.send({
 				name: "Lawrence Fry",

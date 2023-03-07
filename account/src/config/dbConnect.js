@@ -11,7 +11,6 @@ mongoose.connect(
 	`mongodb://admin:secret@${DB_HOST}:27017/ecomm?authSource=admin`
 );
 
-
 let db = mongoose.connection;
 
 export default db;
