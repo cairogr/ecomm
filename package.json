@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "supertest": "^6.3.3"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
   }
 }

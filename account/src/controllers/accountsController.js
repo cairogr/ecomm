@@ -1,6 +1,6 @@
 import accounts from "./../models/accounts.js";
+import bcrypt from "bcryptjs";
 class AccountsController {
-
 	static readAllAccounts = (req, res) => {
 		accounts.find((err, accounts) => {
 			res.status(200).json(accounts);
@@ -8,7 +8,10 @@ class AccountsController {
 	};
 
 	static createAccounts = (req, res) => {
-		let account = new accounts(req.body);
+		const account = new accounts(req.body);
+		const salt = bcrypt.genSaltSync(12);
+		const senhaHash = bcrypt.hashSync(req.body.password, salt);
+		account.password = senhaHash;
 
 		account.save((err) => {
 			if (err) {
