@@ -11,19 +11,45 @@ afterAll(done => {
 
 let id;
 describe("Test Accounts", () => {
+
 	it("returns all accounts", async () => {
-		const response = await request(app)
+		await request(app)
 			.get("/admin/accounts")
 			.set("Accept", "application/json")
 			.expect("content-type", /json/)
 			.expect(200);
 
-		console.log(response.body);
 	});
 
+	it("create a account - ERROR", async () => {
+		const response = await request(app)
+			.post("/accounts")
+			.send({
+				name: "Lawrence Fry",
+				email: "lawrencefry@silodyne.com",
+				password: "E@d8aea9",
+				status: false,
+				cpf: "180270962",
+				phone: "+55969328223",
+				registered: "Tue Jan 17 2023 11:42:53 GMT-0300 (Brasilia Standard Time)",
+				address: [
+					{
+						street: "Flatlands Avenue",
+						number: 4150,
+						complement: "",
+						zipCode: "66.117-1",
+						city: "Barclay",
+						state: "RO",
+						status: true
+					}
+				]
+			})
+			.set("Accept", "application/json")
+			.expect("content-type", /json/)
+			.expect(500);
+	});
 
-
-	it("create a account", async () => {
+	it("create a account - SUCCESS", async () => {
 		const response = await request(app)
 			.post("/accounts")
 			.send({
@@ -55,8 +81,7 @@ describe("Test Accounts", () => {
 		id = response.body._id;
 	});
 
-
-	it("returns a account found by its id", async () => {
+	it("returns a account found by its id - SUCCESS", async () => {
 		await request(app)
 			.get(`/admin/accounts/${id}`)
 			.set("Accept", "application/json")
@@ -64,9 +89,16 @@ describe("Test Accounts", () => {
 			.expect(200);
 	});
 
+	it("returns a account found by its id - ERROR", async () => {
+		let newId = id+9999999;
+		await request(app)
+			.get(`/admin/accounts/${newId}`)
+			.set("Accept", "application/json")
+			.expect("content-type", /json/)
+			.expect(404);
+	});
 
-
-	it("updates a account", async () => {
+	it("updates a account - SUCCESS", async () => {
 		await request(app)
 			.put(`/admin/accounts/${id}`)
 			.send({
@@ -77,12 +109,30 @@ describe("Test Accounts", () => {
 			.expect(200);
 	});
 
+	it("updates a account - ERROR", async () => {
+		let newId = id+9999999;
+		await request(app)
+			.put(`/admin/accounts/${newId}`)
+			.send({
+				name: "L"
+			})
+			.set("Accept", "application/json")
+			.expect("content-type", /json/)
+			.expect(404);
+	});
 
-
-	it("delete a account", async () => {
+	it("delete a account - SUCCESS", async () => {
 		await request(app)
 			.delete(`/admin/accounts/${id}`)
 			.set("Accept", "application/json")
 			.expect(204);
+	});
+
+	it("delete a account - ERROR", async () => {
+		let newId = id+9999999;
+		await request(app)
+			.delete(`/admin/accounts/${newId}`)
+			.set("Accept", "application/json")
+			.expect(404);
 	});
 });

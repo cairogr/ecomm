@@ -1,0 +1,589 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Swagger Petstore - OpenAPI 3.0",
+      "description": "Projeto chamado **Ecomm**, que é um ecommerce baseado no Mercado Livre ou semelhantes que será um projeto construído em partes, ou seja, teremos alguns projetos que se conectam e em conjunto, fazem o Ecomm funcionar.\n\nSome useful links:\n- [The Ecomm repository](https://github.com/cairogr/ecomm)",
+      "termsOfService": "https://github.com/cairogr/ecomm",
+      "contact": {
+        "email": "cairo.ribeiro@pagonxt.com"
+      },
+      "version": "0.0.1"
+    },
+    "servers": [
+      {
+        "url": "https://63d01b8a8a780ae6e683cb6b.mockapi.io/"
+      }
+    ],
+    "tags": [
+      {
+        "name": "categories",
+        "description": "Everything about your Categories"
+      },
+      {
+        "name": "products",
+        "description": "Access to products of ecomm"
+      },
+      {
+        "name": "user",
+        "description": "Operations about user"
+      }
+    ],
+    "paths": {
+      "/api/categories": {
+        "get": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Recupera categorias cadastradas",
+          "responses": {
+            "200": {
+              "description": "Sucesso!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Categories"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "ID Inválido",
+              "content": {
+                "application/json": {
+                  "example": "Invalid ID"
+                }
+              }
+            },
+            "404": {
+              "description": "Categoria não encontrada",
+              "content": {
+                "application/json": {
+                  "example": "ID not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/admin/categories": {
+        "post": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Cadastro de categorias pelo Administrador",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Sucesso!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Categories"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/categories/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "get": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Recupera categorias pelo id",
+          "responses": {
+            "200": {
+              "description": "Sucesso!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Categories"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "ID Inválido",
+              "content": {
+                "application/json": {
+                  "example": "Invalid ID"
+                }
+              }
+            },
+            "404": {
+              "description": "Categoria não encontrada",
+              "content": {
+                "application/json": {
+                  "example": "ID not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/admin/categories/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "put": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Atualiza Categoria",
+          "requestBody": {
+            "description": "Atualiza uma categoria existente em seu ecommerce",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categories"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Sucesso!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Categories"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Deleta Categoria",
+          "description": "Será deletado uma categoria do ecommerce",
+          "responses": {
+            "200": {
+              "description": "Deletado com sucesso!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Categories"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "ID Inválido"
+            },
+            "404": {
+              "description": "ID not found",
+              "content": {
+                "application/json": {
+                  "example": "ID not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/products": {
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Returns registered products",
+          "responses": {
+            "200": {
+              "description": "Sucesso!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/admin/products": {
+        "post": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Add a new product to the ecommerce",
+          "requestBody": {
+            "description": "Create a new product in the ecommerce",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Products"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "Successfully created!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/api/products/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Find product by ID",
+          "description": "Return a single product",
+          "responses": {
+            "200": {
+              "description": "Successful!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid ID supplied",
+              "content": {
+                "application/json": {
+                  "example": "Invalid ID"
+                }
+              }
+            },
+            "404": {
+              "description": "Product not found",
+              "content": {
+                "application/json": {
+                  "example": "ID not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/admin/products/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "put": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Update an existing product",
+          "requestBody": {
+            "description": "Update an existent product in the ecommerce",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Products"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Product not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Delete a product",
+          "description": "Delete a product",
+          "responses": {
+            "200": {
+              "description": "Successfully deleted!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "ID Inválido"
+            },
+            "404": {
+              "description": "ID not found",
+              "content": {
+                "application/json": {
+                  "example": "ID not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/products/": {
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "List products from a specific category",
+          "parameters": [
+            {
+              "name": "category",
+              "in": "query",
+              "description": "Categories that need to be considered for the filter",
+              "required": false,
+              "explode": false,
+              "schema": {
+                "type": "string",
+                "default": "available",
+                "enum": [
+                  "informática",
+                  "beleza",
+                  "celulares",
+                  "movéis",
+                  "luxo",
+                  "esporte",
+                  "automotiva",
+                  "livros"
+                ]
+              }
+            },
+            {
+              "name": "minPrice",
+              "in": "query",
+              "description": "Min",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "maxPrice",
+              "in": "query",
+              "description": "Max",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "quantityStock",
+              "in": "query",
+              "description": "List greater quantity Stock",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Sucesso!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Categories": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "Phone"
+            },
+            "status": {
+              "type": "boolean"
+            }
+          }
+        },
+        "Products": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "iPhone 13 Pro"
+            },
+            "description": {
+              "type": "string",
+              "example": "Apple iPhone 13 Pro (256 GB) - Verde-alpino"
+            },
+            "slug": {
+              "type": "string",
+              "example": "iphone-13-pro"
+            },
+            "unitPrice": {
+              "type": "integer",
+              "format": "int32",
+              "example": 9335.62
+            },
+            "quantityStock": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            },
+            "idCategory": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1
+            },
+            "category": {
+              "type": "string",
+              "example": "celulares"
+            }
+          }
+        },
+        "Users": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "iPhone 13 Pro"
+            },
+            "description": {
+              "type": "string",
+              "example": "Apple iPhone 13 Pro (256 GB) - Verde-alpino"
+            },
+            "slug": {
+              "type": "string",
+              "example": "iphone-13-pro"
+            },
+            "unitPrice": {
+              "type": "integer",
+              "format": "int32",
+              "example": 9335.62
+            },
+            "quantityStock": {
+              "type": "integer",
+              "format": "int32",
+              "example": 10
+            },
+            "idCateogry": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "petstore_auth": {
+          "type": "oauth2",
+          "flows": {
+            "implicit": {
+              "authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
+              "scopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+              }
+            }
+          }
+        },
+        "api_key": {
+          "type": "apiKey",
+          "name": "api_key",
+          "in": "header"
+        }
+      }
+    }
+  }
