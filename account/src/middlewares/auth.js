@@ -13,7 +13,6 @@ const localStrategy = new LocalStrategy(
 	},
 	async (email, password, done) => {
 		try {
-			// find user
 			const user = await Users.findOne({ email: email});
 			if (!user) {
 				return done(null, false, {
@@ -21,7 +20,6 @@ const localStrategy = new LocalStrategy(
 				});
 			}
 
-			// check password
 			const passwordValid = await bcrypt.compare(password, user.password);
 
 			if (!passwordValid) {
@@ -36,9 +34,10 @@ const localStrategy = new LocalStrategy(
 
 const bearerStrategy = new BearerStrategy(async (token, done) => {
 	try {
-		//await verificaTokenNaBlacklist(token);
+
 		const payload = jwt.verify(token, process.env.APP_SECRET);
 		const usuario = await Users.findById(payload.id);
+		console.log(payload.id);
 		done(null, usuario, { token: token });
 	} catch (erro) {
 		done(erro);
@@ -46,8 +45,9 @@ const bearerStrategy = new BearerStrategy(async (token, done) => {
 }
 );
 
+
 passport.use(localStrategy);
 passport.use(bearerStrategy);
 
-export const authLocal = passport.authenticate("local", { session: false });
+export const authLocal = passport.authenticate("local",	{ session: false });
 export const authBearer = passport.authenticate("bearer", { session: false });

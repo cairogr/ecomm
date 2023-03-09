@@ -9,9 +9,7 @@ router
 	.get("/admin/accounts", authBearer, AccountsController.readAllAccounts)
 
 	.get("/admin/accounts/:id", AccountsController.readAccountById)
-	//.post("/login", AccountsController.autentication)
 	.post("/accounts", AccountsController.createAccounts)
-
 
 	.put("/admin/accounts/:id", authBearer,AccountsController.updateAccount)
 	.delete("/admin/accounts/:id", authBearer,AccountsController.deleteAccount);
