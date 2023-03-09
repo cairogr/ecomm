@@ -8,7 +8,7 @@ router
 	.get('/v1/payments', PaymentsController.readAll)
 	.get('/v1/payments/:id', PaymentsController.readByID)
 	.patch('/v1/payments/:id', PaymentsController.update)
-	.patch('/v1/payments/:id/auth/:status', PaymentsController.updateStatus)
+	.post('/v1/payments/:id/auth/:status', PaymentsController.updateStatus)
 	.delete('/v1/payments/:id', PaymentsController.delete);
 
 module.exports = router;

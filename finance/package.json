@@ -5,9 +5,10 @@
   "main": "./api/main.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node ./src/main.js",
+    "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js",
-    "test": "jest --runInBand",
+    "lint": "eslint src",
+    "test": "jest",
     "test:coverage": "jest --coverage"
   },
   "keywords": [],

@@ -59,7 +59,7 @@ class PaymentsController {
 		try {
 			const paymentByID = await findPaymentData(id);
 			
-			if (!paymentByID) {
+			if (paymentByID) {
 				return res.status(200).json(paymentByID);
 			} else {
 				return res
@@ -93,7 +93,7 @@ class PaymentsController {
 					);
 
 					await database.Payments.update(
-						{  invoiceID: 'dsadsdf' },
+						{  invoiceID: newInvoice.id },
 						{ where: { id: Number(id) }, t}
 					);
 					//const dataPayment = await findPaymentData(id);

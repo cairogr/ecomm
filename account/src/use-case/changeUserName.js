@@ -1,12 +1,11 @@
-import { accounts, createUserUseCase } from "./createUserAccount.js";
-import { searchUserAccountByEmailUseCase } from "./searchUserAccountByEmail.js";
+import { accounts} from "./createUserAccount.js";
 
 function changeUserNameUseCase(searchEmail, newName) {
-  accounts[
-    accounts.findIndex((account) => account.email === searchEmail)
-  ].name = newName;
+	accounts[
+		accounts.findIndex((account) => account.email === searchEmail)
+	].name = newName;
 
-  return accounts;
+	return accounts;
 }
 
 export { changeUserNameUseCase };

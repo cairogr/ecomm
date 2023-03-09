@@ -1,0 +1,258 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Swagger Petstore - OpenAPI 3.0",
+      "description": "Projeto chamado **Ecomm**, que é um ecommerce baseado no Mercado Livre ou semelhantes que será um projeto construído em partes, ou seja, teremos alguns projetos que se conectam e em conjunto, fazem o Ecomm funcionar.\n\nSome useful links:\n- [The Ecomm repository](https://github.com/cairogr/ecomm)",
+      "termsOfService": "https://github.com/cairogr/ecomm",
+      "contact": {
+        "email": "cairo.ribeiro@pagonxt.com"
+      },
+      "version": "0.0.1"
+    },
+    "servers": [
+      {
+        "url": "https://63d01b8a8a780ae6e683cb6b.mockapi.io/"
+      }
+    ],
+    "tags": [
+      {
+        "name": "user",
+        "description": "Operations about user"
+      }
+    ],
+    "paths": {
+      "/api/admin/users": {
+        "get": {
+          "tags": [
+            "user"
+          ],
+          "summary": "Returns user registration in the ecommerce",
+          "responses": {
+            "200": {
+              "description": "Successful!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "user"
+          ],
+          "summary": "Create user",
+          "requestBody": {
+            "description": "Create a new user in the ecommerce",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "Successfully created!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      },
+      "/api/admin/users/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "get": {
+          "tags": [
+            "user"
+          ],
+          "summary": "Find user by ID",
+          "description": "Return a single user",
+          "responses": {
+            "200": {
+              "description": "Successful!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid ID supplied",
+              "content": {
+                "application/json": {
+                  "example": "Invalid ID"
+                }
+              }
+            },
+            "404": {
+              "description": "User not found",
+              "content": {
+                "application/json": {
+                  "example": "ID not found"
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "user"
+          ],
+          "summary": "Update an existing user",
+          "requestBody": {
+            "description": "Update an existent user in the ecommerce",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful operation!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "User not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "user"
+          ],
+          "summary": "Delete a user",
+          "description": "Delete a user",
+          "responses": {
+            "200": {
+              "description": "Successfully deleted!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "ID Inválido"
+            },
+            "404": {
+              "description": "ID not found",
+              "content": {
+                "application/json": {
+                  "example": "ID not found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Users": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "Arnold Schwarzenegger"
+            },
+            "email": {
+              "type": "string",
+              "example": "schwarzenegger@email.com",
+              "format": "email"
+            },
+            "password": {
+              "type": "string",
+              "example": "12345",
+              "format": "password"
+            },
+            "cpf": {
+              "type": "string",
+              "example": "123.456.789-12"
+            },
+            "phone": {
+              "type": "string",
+              "example": "(31) 99999-6666"
+            },
+            "streetAddress": {
+              "type": "string",
+              "example": "Butler Place"
+            },
+            "numberAddress": {
+              "type": "integer",
+              "format": "int32",
+              "example": 987
+            },
+            "complementAddress": {
+              "type": "string",
+              "example": "close to grandma"
+            },
+            "zipCode": {
+              "type": "string",
+              "example": "98.765-43"
+            },
+            "city": {
+              "type": "string",
+              "example": "Blodgett"
+            },
+            "state": {
+              "type": "string",
+              "example": "Michigan"
+            },
+            "registered": {
+              "type": "string",
+              "format": "date-time",
+              "writeOnly": true
+            }
+          }
+        }
+      }
+    }
+  }
