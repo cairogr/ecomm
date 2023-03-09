@@ -1,10 +1,16 @@
 import accounts from "./../models/accounts.js";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs/dist/bcrypt.js";
+import jwt from "jsonwebtoken";
 class AccountsController {
 	static readAllAccounts = (req, res) => {
 		accounts.find((err, accounts) => {
 			res.status(200).json(accounts);
 		});
+	};
+
+	static login = async (req, res) => {
+		let token = await generateToken(req.user);
+		return res.set("Authorization", token).status(204).send();
 	};
 
 	static createAccounts = (req, res) => {
@@ -61,6 +67,22 @@ class AccountsController {
 			}
 		});
 	};
+
+	static findEmail = async (email, res) => {
+		const user = await accounts.findOne({ email: email });
+
+		if (!user) {
+			return res.status(401).json({ message: "User not found" });
+		}
+	};
+}
+
+function generateToken(usuario) {
+	const payload = {
+		id: usuario._id,
+	};
+	const newToken = jwt.sign( payload , process.env.APP_SECRET);
+	return newToken;
 }
 
 export default AccountsController;
