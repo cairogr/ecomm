@@ -14,6 +14,14 @@ services:
     volumes:
       - mongoecomm:/data/db
 
+  redis:
+    image: redis
+    container_name: redis-blocklist
+    ports:
+      - 6379:6379
+    networks:
+      - compose-bridge
+
   mysql:
     image: mysql
     restart: always

@@ -1,6 +1,7 @@
 import routes from "./routes/baseRoutes.js";
 import express from "express";
 import db from "./config/dbConnect.js";
+import client from "../redis/serverRedis.js";
 
 db.on("error", console.log.bind(console, "Erro de conexão"));
 db.once("open", () => {

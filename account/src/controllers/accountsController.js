@@ -1,6 +1,7 @@
 import accounts from "./../models/accounts.js";
 import bcrypt from "bcryptjs/dist/bcrypt.js";
 import jwt from "jsonwebtoken";
+import { addTokenBlockList } from "../../redis/configServerRedis.js";
 class AccountsController {
 	static readAllAccounts = (req, res) => {
 		accounts.find((err, accounts) => {
@@ -11,6 +12,11 @@ class AccountsController {
 	static login = async (req, res) => {
 		let token = await generateToken(req.user);
 		return res.set("Authorization", token).status(204).send();
+	};
+
+	static logout = async (req, res) => {
+		await addTokenBlockList(req.token);
+		return res.status(204).send();
 	};
 
 	static createAccounts = (req, res) => {
@@ -81,7 +87,7 @@ function generateToken(usuario) {
 	const payload = {
 		id: usuario._id,
 	};
-	const newToken = jwt.sign( payload , process.env.APP_SECRET);
+	const newToken = jwt.sign( payload , process.env.APP_SECRET, { expiresIn: "15m" });
 	return newToken;
 }
 

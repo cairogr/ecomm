@@ -7,6 +7,7 @@ const router = express.Router();
 router
 	.post("/accounts/login", authLocal, AccountsController.login)
 	.get("/admin/accounts", authBearer, AccountsController.readAllAccounts)
+	.get("/accounts/logout", authBearer, AccountsController.logout)
 
 	.get("/admin/accounts/:id", AccountsController.readAccountById)
 	.post("/accounts", AccountsController.createAccounts)
