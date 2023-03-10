@@ -21,6 +21,8 @@ services:
       - 6379:6379
     networks:
       - compose-bridge
+    volumes:
+      - redisecomm:/data
 
   mysql:
     image: mysql
@@ -80,3 +82,4 @@ networks:
 volumes:
   mongoecomm:
   mysqlecomm:
+  redisecomm: {}
