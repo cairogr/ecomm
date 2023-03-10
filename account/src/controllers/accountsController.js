@@ -15,8 +15,12 @@ class AccountsController {
 	};
 
 	static logout = async (req, res) => {
-		await addTokenBlockList(req.token);
-		return res.status(204).send();
+		try {
+			await addTokenBlockList(req.token);
+			return res.status(204).send();
+		} catch (error) {
+			return res.status(404).send(error);
+		}
 	};
 
 	static createAccounts = (req, res) => {
@@ -87,7 +91,9 @@ function generateToken(usuario) {
 	const payload = {
 		id: usuario._id,
 	};
-	const newToken = jwt.sign( payload , process.env.APP_SECRET, { expiresIn: "15m" });
+	const newToken = jwt.sign(payload, process.env.APP_SECRET, {
+		expiresIn: "15m",
+	});
 	return newToken;
 }
 

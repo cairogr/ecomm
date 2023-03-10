@@ -1,21 +1,17 @@
 import client from "./serverRedis.js";
-import { promisify } from "util";
 import jwt from "jsonwebtoken";
 
-const existsAsync = promisify(client.exists).bind(client);
-const setAsync = promisify(client.set).bind(client);
-
-async function addTokenBlockList(token){
+async function addTokenBlockList(token) {
 	const dataExpiration = jwt.decode(token).exp;
-	console.log("data",dataExpiration);
-	await setAsync(token, "");
+	await client.set(token, "Token Logout");
 	client.expireAt(token, dataExpiration);
-
 }
 
-async function findTokenBlockList(token){
-	const result = await existsAsync(token);
-	return result === 1;
+async function findTokenBlockList(token) {
+	const result = await client.exists(token);
+	if (result) {
+		throw new jwt.JsonWebTokenError("Token inválido por logout!");
+	}
 }
 
-export {addTokenBlockList, findTokenBlockList};
+export { addTokenBlockList, findTokenBlockList };
