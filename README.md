@@ -32,18 +32,18 @@ docker run \
 
 | Factor | Description | Status 
 |--------|-------------|--------| 
-|1. Codebase | One codebase tracked in revision control, many deploys | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> || 
-|2. Dependencies | Explicitly declare and isolate dependencies |  <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen">|| 
-|3. Config | Store config in the environment | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> || 
-|4. Backing services | Treat backing services as attached resources | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> || 
-|5. Build, release, run | Strictly separate build and run stages | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> || 
-|6. Processes | Execute the app as one or more stateless processes | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> || 
-|7. Port binding | Export services via port binding | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> || 
-|8. Concurrency | Scale out via the process model | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> || 
-|9. Disposability | Maximize robustness with fast startup and graceful shutdown |<img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen">  || 
-|10. Dev/prod parity | Keep development, staging, and production as similar as possible | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> || 
-|11. Logs | Treat logs as event streams | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> || 
-|12. Admin processes | Run admin/management tasks as one-off processes | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> |
+|1. Codebase | One codebase tracked in revision control, many deploys |:white_check_mark:|| 
+|2. Dependencies | Explicitly declare and isolate dependencies |  :white_check_mark:|| 
+|3. Config | Store config in the environment | :white_check_mark: || 
+|4. Backing services | Treat backing services as attached resources | :white_check_mark: || 
+|5. Build, release, run | Strictly separate build and run stages | :white_check_mark: || 
+|6. Processes | Execute the app as one or more stateless processes | :white_check_mark: || 
+|7. Port binding | Export services via port binding | :white_check_mark: || 
+|8. Concurrency | Scale out via the process model | :white_check_mark: || 
+|9. Disposability | Maximize robustness with fast startup and graceful shutdown |:white_check_mark:  || 
+|10. Dev/prod parity | Keep development, staging, and production as similar as possible | :white_check_mark: || 
+|11. Logs | Treat logs as event streams | :white_check_mark: || 
+|12. Admin processes | Run admin/management tasks as one-off processes | :white_check_mark: |
 
 ## Checklist Features
 
