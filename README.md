@@ -45,47 +45,47 @@ docker run \
 |11. Logs | Treat logs as event streams | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> || 
 |12. Admin processes | Run admin/management tasks as one-off processes | <img alt="Pass" src="https://img.shields.io/badge/-Pass-brightgreen"> |
 
-### Checklist Features
+## Checklist Features
 
 - MongoDB
-- [x] Create connection with MongoDB
-- [x] Create model
+    - [x] Create connection with MongoDB
+    - [x] Create model  
 
 - Product API
-- [x] GET product by ID
-- [x] GET ALL products
-- [x] POST product
-- [x] UPDATE product
-- [x] DELETE product
-
+    - [x] GET product by ID
+    - [x] GET ALL products
+    - [x] POST product
+    - [x] UPDATE product
+    - [x] DELETE product
+    
 - Account API
-- [x] GET Account by ID
-- [x] GET ALL Accounts
-- [x] POST Account
-- [x] UPDATE Account
-- [x] DELETE Account
+    - [x] GET Account by ID
+    - [x] GET ALL Accounts
+    - [x] POST Account
+    - [x] UPDATE Account
+    - [x] DELETE Account
 
 - Payment API
-- [x] GET Payment by ID
-- [x] GET ALL Payments
-- [x] POST Payment
-- [x] UPDATE Payment
-- [x] DELETE Payment
+    - [x] GET Payment by ID
+    - [x] GET ALL Payments
+    - [x] POST Payment
+    - [x] UPDATE Payment
+    - [x] DELETE Payment
 
 - Order API
-- [x] GET Order by ID
-- [x] GET ALL Orders
-- [x] POST Order
-- [x] UPDATE Order
-- [x] DELETE Order
+    - [x] GET Order by ID
+    - [x] GET ALL Orders
+    - [x] POST Order
+    - [x] UPDATE Order
+    - [x] DELETE Order
 
 - Model APIs with Swagger
-- [x] Model product API
-- [x] Model account API
-- [] Model payment API
-- [] Model order API
+    - [x] Model product API
+    - [x] Model account API
+    - [ ] Model payment API
+    - [ ] Model order API
 
 - Auth
-- [x] login
-- [x] validate user token
-- [x] sign up
+    - [x] login
+    - [x] validate user token
+    - [x] sign up
