@@ -9,14 +9,14 @@ const accountsSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 			minLength: 9,
-			validate: {
+			/*validate: {
 				validator: function (v) {
 					return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/.test(
 						v
 					);
 				},
 				message: (props) => `${props.value} is not a valid password!`,
-			},
+			},*/
 		},
 
 		cpf: { type: String, required: true, minLength: 11, maxLength: 11 },
