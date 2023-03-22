@@ -20,6 +20,10 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           
+      - name: Run ESlint
+        run: npm run lint
+        working-directory: ./account
+          
       - name: Install dependencies
         run: npm install
         working-directory: ./account
