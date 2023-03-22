@@ -1,0 +1,28 @@
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+     - name: npm install service accounts
+        run: | 
+        npm ci
+        npm run build --if-present
+        npm run test --if-present
+        path: ./../../accounts
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v3
+      with:
+        name: node-app
+        path: .
+        
