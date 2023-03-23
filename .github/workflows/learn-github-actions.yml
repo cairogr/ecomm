@@ -22,7 +22,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
                   
       - name: Install dependencies
-        run: npm install -D jest supertest eslint 
+        run: npm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
         working-directory: ./account
         
       - name: Run ESlint
