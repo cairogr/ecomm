@@ -25,7 +25,9 @@ jobs:
       - name: Install dependencies
         run: npm install
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          username: ${{ secrets.USER_AUTH_TOKEN }}
+          _password: ${{ secrets.PASS_AUTH_TOKEN }}
+          email: ${{ secrets.EMAIL_AUTH_TOKEN }}
         working-directory: ./account
         
       - name: Run ESlint
