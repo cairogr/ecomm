@@ -159,3 +159,39 @@ Com base nos padrões utilizados para desenvolvimento de arquitetura voltada a M
 - Performance Metrics
 
    Quando o portfólio de serviços aumenta devido a uma arquitetura de microsserviços, torna-se fundamental monitorar as transações para que os padrões possam ser monitorados e os alertas enviados quando ocorrer um problema.
+
+
+## Documentação sobre mais aspectos de Microservices
+
+
+### Padronização ou não das stacks
+
+    Este projeto tem padronização parcial. Todos os serviços tem como base a mesma stack, mas cada serviço utiliza seu próprio banco de dados distinto.
+
+### Service discovery
+
+    Com o Service Discovery, o cliente não vai mais enviar suas requisições a cada serviço, ele irá enviar para um local único (Shopping), que através do Service Siscovery saberá para onde encaminhar, então receber de volta a requisição e devolve-la pro cliente.
+    Neste primeiro momento a demanda está sendo suprida pelo API Gateway.
+
+### Aspectos de segurança
+
+    A segurança é um ponto muito importante em qualquer aplicação independente da stack. Segue algumas ações para tornar nossa API mais segura:
+    - Implementação de API-Gateway
+    - Desativação do cabeçalho X-Powered-By
+    - Habilitação do CORS
+    - Limitação de requisições
+    - Estratégias de autenticação com a utilização do token JWT
+    - 
+
+
+### Tecnologias a adotar para deploy e build
+
+    É recomendavel ter processos e técnicas para tornar o processo de desenvolvimento, teste e entrega mais ágil e eficiente. Nesse projeto foi implementado workflow do Github Actions para se automatizar as integrações de código, assim reduzindo erros e defeitos de código.
+
+### Como lidar com tolerância a falhas em aplicações síncronas (circuit breaker, cache)
+
+    Com o intuito de o sistema como um todo a ser mais resiliente a erros “transitórios” que podem se autocorrigir em um curto período de tempo, devemos implementar um circuit breaker e um cache.
+
+### Em que pontos faz sentido usar comunicação assíncrona
+
+    Quando  vários microsserviços que precisam chamar uns aos outros e aguardar algumas operações longas até serem concluídas, devemos usar a comunicação assíncrona. E para este projeto fizemos tal implementação com o auxílio do Kafka para que após a confirmação do pagamentos seja feito processamento em segundo plano da emissão da Nota Fiscal.
