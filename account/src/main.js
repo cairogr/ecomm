@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import routes from "./routes/baseRoutes.js";
 import express from "express";
 import db from "./config/dbConnect.js";
