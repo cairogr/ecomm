@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		await queryInterface.createTable('Invoices', {
+		await queryInterface.createTable("Invoices", {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
@@ -12,7 +12,6 @@ module.exports = {
 			},
 			paymentID: {
 				type: Sequelize.INTEGER,
-				references: { model: 'Payments', key: 'id'}
 			},
 			buyerName: {
 				allowNull: false,
@@ -42,6 +41,6 @@ module.exports = {
 		});
 	},
 	async down(queryInterface, Sequelize) {
-		await queryInterface.dropTable('Invoices');
+		await queryInterface.dropTable("Invoices");
 	},
 };

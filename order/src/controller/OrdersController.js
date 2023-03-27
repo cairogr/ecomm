@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const db = require("../models");
 
 class OrdersController {
@@ -64,13 +65,13 @@ class OrdersController {
 		const orderData = req.body;
 
 
-		let productData = await fetch(`http://localhost:3003/products/${orderData.buyerID}`)
-			.then(response => response.json())
-			.catch(console.error);
+		// let productData = await fetch(`http://localhost:3003/products/${orderData.buyerID}`)
+		// 	.then(response => response.json())
+		// 	.catch(console.error);
 
-		let accountsData = await fetch(`http://localhost:3002/admin/accounts/${id}`)
-			.then(response => response.json())
-			.catch(console.error);
+		// let accountsData = await fetch(`http://localhost:3002/admin/accounts/${id}`)
+		// 	.then(response => response.json())
+		// 	.catch(console.error);
 
 		const findOrder = await db.Orders.findOne({
 			where: { id: id }
@@ -82,11 +83,11 @@ class OrdersController {
         status.toUpperCase() == "PAGO")
 		) {
 			if (status.toUpperCase() == "PAGO") {
-				clientData.paymentID = "salvar id aqui";
+				// clientData.paymentID = "salvar id aqui";
 
 				await db.Orders.update(
 					{ status: status.toUpperCase(),
-						paymentID: "dasdasdsdsa",
+						paymentID: "teste add",
           
 					},
 					{ where: { id: id } }

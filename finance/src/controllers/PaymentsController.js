@@ -1,6 +1,14 @@
+/* eslint-disable no-unused-vars */
 const database = require('../models');
 const { UNPROCESSABLE_ENTITY, STATUS } = require('../utils/constantes.js');
 const { createValidation } = require('../validations/validations.js');
+const { Kafka } = require('kafkajs');
+
+const clientId = 'ecomm';
+const brokers = ['kafka:9092'];
+const topic = 'processInvoice';
+const kafka = new Kafka({clientId,	brokers});
+let newInvoice = {};
 class PaymentsController {
 
 	static async create(req, res) {
@@ -82,11 +90,34 @@ class PaymentsController {
 		}
 
 		if (status.toUpperCase() === STATUS.CONFIRMADO) {
-			try{
+			try{	
+				const producer = kafka.producer();
+				await producer.connect();
+				const consumer = kafka.consumer({ groupId: 'create-Invoice'  });
+				await consumer.connect();
+
+				await producer.send({
+					topic: topic,
+					messages: [{value: JSON.stringify(clientData)}
+					],
+				});
+
+				await consumer.subscribe({ topic: 'Data-Invoices', fromBeginning: true });
+				await new Promise(resolve => setTimeout(resolve, 1000));
+				await consumer.run({
+					eachMessage: (async ({ topic, partition, message }) => {
+						try{
+							newInvoice = await JSON.parse(message.value.toString());
+						}
+						catch(e){
+							console.warn('Failed to process message, sending to DLQ', { topic, partition, offset: message.offset, error: e });
+						}
+					})
+				});
+
 				await database.sequelize.transaction(async function (t) {
 
-					const newInvoice = await database.Invoices.create(clientData, { t });
-
+					console.log(newInvoice.id);
 					await database.Payments.update(
 						{ status: status.toUpperCase() },
 						{ where: { id: Number(id) }, t}
@@ -96,9 +127,7 @@ class PaymentsController {
 						{  invoiceID: newInvoice.id },
 						{ where: { id: Number(id) }, t}
 					);
-					//const dataPayment = await findPaymentData(id);
-					return res.status(200).json(newInvoice);
-					
+					return res.status(200).json({ mensagem: `Payment ID: ${id} confirmed! - Invoice in processing` });
 				});
 			}catch(error){
 				return res.status(400).json(error.message);
@@ -109,7 +138,6 @@ class PaymentsController {
 					{ status: status.toUpperCase() },
 					{ where: { id: id } }
 				);
-					
 				const updatenewPaymentData = await findPaymentData(id);
 				return res.status(200).json(updatenewPaymentData);
 			} catch (error) {
